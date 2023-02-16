@@ -14,67 +14,64 @@ class Game
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?float $round_number = null;
+    private ?int $roundNumber = null;
 
     #[ORM\Column]
-    private ?float $roundNumber = null;
+    private ?int $tableNumber = null;
 
     #[ORM\Column]
-    private ?float $tableNumber = null;
+    private ?int $scorePlayerOne = null;
 
     #[ORM\Column]
-    private ?float $scorePlayerOne = null;
-
-    #[ORM\Column]
-    private ?float $scorePlayerTwo = null;
+    private ?int $scorePlayerTwo = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getRoundNumber(): ?float
+    public function getRoundNumber(): ?int
     {
-        return $this->round_number;
+        return $this->roundNumber;
     }
 
-    public function setRoundNumber(float $round_number): self
+    public function setRoundNumber(int $roundNumber): self
     {
-        $this->round_number = $round_number;
+        $this->roundNumber = $roundNumber;
 
         return $this;
     }
 
-    public function getTableNumber(): ?float
+    public function getTableNumber(): ?int
     {
         return $this->tableNumber;
     }
 
-    public function setTableNumber(float $tableNumber): self
+    public function setTableNumber(int $tableNumber): self
     {
         $this->tableNumber = $tableNumber;
 
         return $this;
     }
 
-    public function getScorePlayerOne(): ?float
+    public function getScorePlayerOne(): ?int
     {
         return $this->scorePlayerOne;
     }
 
-    public function setScorePlayerOne(float $scorePlayerOne): self
+    public function setScorePlayerOne(int $scorePlayerOne): self
     {
         $this->scorePlayerOne = $scorePlayerOne;
 
         return $this;
     }
 
-    public function getScorePlayerTwo(): ?float
+    public function getScorePlayerTwo(): ?int
     {
         return $this->scorePlayerTwo;
     }
 
-    public function setScorePlayerTwo(float $scorePlayerTwo): self
+    public function setScorePlayerTwo(int $scorePlayerTwo): self
     {
         $this->scorePlayerTwo = $scorePlayerTwo;
 
