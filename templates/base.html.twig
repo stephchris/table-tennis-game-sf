@@ -14,9 +14,33 @@
         {% endblock %}
     </head>
     <body>
+
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{{ path('homepage') }}">Home</a></li>
+
+
+
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+    <main>
         {% block body %}
-        <h1 class="text-3xl font-bold underline">
-            Hello world!</h1>
+
         {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Table Tennis Game &copy; 2023</p>
+
+
+        </div>
+    </footer>
+
     </body>
 </html>
