@@ -15,28 +15,36 @@
     </head>
     <body>
 
-    <header class="site-header">
-        <div class="container">
-            <nav class="navbar">
+
+    <div>
+        <div class="h-32 bg-blue">
+            <h1 class="text-5xl text-center text-[#fe0000] pt-8">Table Tennis Game</h1>
+
+        </div>
+        <div class="flex justify-between">
+            <nav class="bg-lightblue h-screen w-48">
                 <ul>
-                    <li><a href="{{ path('homepage') }}">Home</a></li>
+                    <li><a href="{{ path('homepage') }}">Tableau de bord</a></li>
+                    <li><a href="{{ path('tournament_list') }}">Tournois</a></li>
+
+
 
 
 
                 </ul>
 
+
             </nav>
-        </div>
-    </header>
-    <main>
+
+        <main>
         {% block body %}
 
         {% endblock %}
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>Table Tennis Game &copy; 2023</p>
+    <footer class="bg-blue h-16 ">
+        <div class="">
+            <p class="text-right text-white pt-4 pr-16">Table Tennis Game &copy; 2023</p>
 
 
         </div>

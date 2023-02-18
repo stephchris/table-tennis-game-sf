@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/game')]
 class GameController extends AbstractController
 {
-    #[Route('/', name: 'app_game_index', methods: ['GET'])]
+    #[Route('/game', name: 'app_game', methods: ['GET'])]
     public function index(GameRepository $gameRepository): Response
     {
         return $this->render('game/index.html.twig', [
