@@ -26,6 +26,15 @@ class Game
     #[ORM\Column]
     private ?int $scorePlayerTwo = null;
 
+    #[ORM\ManyToOne(inversedBy: 'game')]
+    private ?Tournament $tournament = null;
+
+    #[ORM\ManyToOne(inversedBy: 'no')]
+    private ?User $player_one = null;
+
+    #[ORM\ManyToOne]
+    private ?User $player_two = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +84,42 @@ class Game
     public function setScorePlayerTwo(int $scorePlayerTwo): self
     {
         $this->scorePlayerTwo = $scorePlayerTwo;
+
+        return $this;
+    }
+
+    public function getTournament(): ?Tournament
+    {
+        return $this->tournament;
+    }
+
+    public function setTournament(?Tournament $tournament): self
+    {
+        $this->tournament = $tournament;
+
+        return $this;
+    }
+
+    public function getPlayerOne(): ?User
+    {
+        return $this->player_one;
+    }
+
+    public function setPlayerOne(?User $player_one): self
+    {
+        $this->player_one = $player_one;
+
+        return $this;
+    }
+
+    public function getPlayerTwo(): ?User
+    {
+        return $this->player_two;
+    }
+
+    public function setPlayerTwo(?User $player_two): self
+    {
+        $this->player_two = $player_two;
 
         return $this;
     }
