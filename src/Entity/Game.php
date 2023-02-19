@@ -26,9 +26,6 @@ class Game
     #[ORM\Column]
     private ?int $scorePlayerTwo = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $tournament = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -82,16 +79,5 @@ class Game
         return $this;
     }
 
-    public function getTournament(): ?string
-    {
-        return $this->tournament;
-    }
-
-    public function setTournament(string $tournament): self
-    {
-        $this->tournament = $tournament;
-
-        return $this;
-    }
 
 }

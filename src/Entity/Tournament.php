@@ -38,9 +38,6 @@ class Tournament
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $game = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -138,18 +135,6 @@ class Tournament
     public function setImage(?string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getGame(): ?string
-    {
-        return $this->game;
-    }
-
-    public function setGame(string $game): self
-    {
-        $this->game = $game;
 
         return $this;
     }
