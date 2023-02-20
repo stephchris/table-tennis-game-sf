@@ -13,17 +13,18 @@ class TournamentFixtures extends Fixture implements DependentFixtureInterface
     {
         $today = new \DateTimeImmutable();
 
-        $tournament1 = new Tournament();
-        $tournament1->setName($this->getReference('Tournoi des Corsaires'));
-        $tournament1->setDateStart($today->modify('+4 month +1 day'));
-        $tournament1->setDateEnd('');
-        $tournament1->setDescription('Venez vous affronter, que le meilleur corsaire gagne');
-        $tournament1->setPlayerNumber('12');
-        $tournament1->setTableNumber('6');
-        $tournament1->setImage('corsaire_boat.jpg');
-        $manager->persist($tournament1);
-        $this->addReference('tournament-corsaire', $tournament1);
+        $corsaire = new Tournament();
+        $corsaire->setName('Tournoi des Corsaires');
+        $corsaire->setDateStart($today->modify('+4 month +1 day'));
+        $corsaire->setType('mixte');
+
+        $corsaire->setPlayerNumber('12');
+        $corsaire->setTableNumber('6');
+        $corsaire->setImage('corsaire_boat.jpg');
+        $manager->persist($corsaire);
+        $this->addReference('tournament-corsaire', $corsaire);
         $manager->flush();
+
     }
 
     public function getDependencies()

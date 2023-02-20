@@ -13,13 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/tournament')]
 class TournamentController extends AbstractController
 {
-    #[Route('/tournament', name: 'tournament_list', methods: ['GET'])]
+    #[Route('/tournament', name: 'app_tournament_index', methods: ['GET'])]
     public function index(TournamentRepository $tournamentRepository): Response
     {
         return $this->render('tournament/index.html.twig', [
             'tournaments' => $tournamentRepository->findAll(),
         ]);
     }
+
 
     #[Route('/new', name: 'app_tournament_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TournamentRepository $tournamentRepository): Response

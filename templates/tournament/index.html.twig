@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tournament index{% endblock %}
+{% block title %}Liste des tournois{% endblock %}
 
 {% block body %}
     <div class="col-span-4 h-screen">
@@ -8,7 +8,7 @@
 
     <p>Organiser un tournoi</p>
 
-    <h2>Tournois ouverts</h2>
+
 
     <table class="table">
         <thead>
@@ -24,90 +24,6 @@
                 <th>Image</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for tournament in tournaments %}
-            <tr>
-                <td>{{ tournament.id }}</td>
-                <td>{{ tournament.name }}</td>
-                <td>{{ tournament.dateStart ? tournament.dateStart|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ tournament.dateEnd ? tournament.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ tournament.description }}</td>
-                <td>{{ tournament.type }}</td>
-                <td>{{ tournament.playerNumber }}</td>
-                <td>{{ tournament.tableNumber }}</td>
-                <td>{{ tournament.image }}</td>
-                <td>
-                    <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">show</a>
-                    <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>Tournois en préparation</h2>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>DateStart</th>
-            <th>DateEnd</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>PlayerNumber</th>
-            <th>TableNumber</th>
-            <th>Image</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for tournament in tournaments %}
-            <tr>
-                <td>{{ tournament.id }}</td>
-                <td>{{ tournament.name }}</td>
-                <td>{{ tournament.dateStart ? tournament.dateStart|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ tournament.dateEnd ? tournament.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ tournament.description }}</td>
-                <td>{{ tournament.type }}</td>
-                <td>{{ tournament.playerNumber }}</td>
-                <td>{{ tournament.tableNumber }}</td>
-                <td>{{ tournament.image }}</td>
-                <td>
-                    <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">show</a>
-                    <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>Tournois archivés</h2>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>DateStart</th>
-            <th>DateEnd</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>PlayerNumber</th>
-            <th>TableNumber</th>
-            <th>Image</th>
-            <th>actions</th>
-        </tr>
         </thead>
         <tbody>
         {% for tournament in tournaments %}

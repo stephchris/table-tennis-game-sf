@@ -25,8 +25,7 @@ class Tournament
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateEnd = null;
 
-    #[ORM\Column(length: 1000, nullable: true)]
-    private ?string $description = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
@@ -40,8 +39,8 @@ class Tournament
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'tournament', targetEntity: Game::class)]
-    private Collection $game;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $Description = null;
 
     public function __construct()
     {
@@ -89,17 +88,7 @@ class Tournament
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
 
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
 
     public function getType(): ?string
     {
@@ -149,32 +138,14 @@ class Tournament
         return $this;
     }
 
-    /**
-     * @return Collection<int, Game>
-     */
-    public function getGame(): Collection
+    public function getDescription(): ?string
     {
-        return $this->game;
+        return $this->Description;
     }
 
-    public function addGame(Game $game): self
+    public function setDescription(?string $Description): self
     {
-        if (!$this->game->contains($game)) {
-            $this->game->add($game);
-            $game->setTournament($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGame(Game $game): self
-    {
-        if ($this->game->removeElement($game)) {
-            // set the owning side to null (unless already changed)
-            if ($game->getTournament() === $this) {
-                $game->setTournament(null);
-            }
-        }
+        $this->Description = $Description;
 
         return $this;
     }
