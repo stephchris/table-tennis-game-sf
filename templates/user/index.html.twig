@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Liste des membres{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h1 class="text-5xl py-16">Liste des membres</h1>
 
-    <table class="table">
+    <table class="my-8">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Genre</th>
+                <th>Date de naissance</th>
+                <th>Classement</th>
+                <th>Adresse</th>
+                <th>Code postal</th>
+                <th>Ville</th>
                 <th>Email</th>
+                <th>Mot de passe</th>
                 <th>Roles</th>
-                <th>Password</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Gender</th>
-                <th>BirthDate</th>
-                <th>Address</th>
-                <th>Zipcode</th>
-                <th>City</th>
-                <th>Ranking</th>
                 <th>Image</th>
                 <th>actions</th>
             </tr>
@@ -47,7 +47,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="14">no records found</td>
+                <td colspan="14">Pas de membres inscrits</td>
             </tr>
         {% endfor %}
         </tbody>

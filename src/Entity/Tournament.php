@@ -37,14 +37,19 @@ class Tournament
     private ?float $tableNumber = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Image]
     private ?string $image = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Description = null;
 
+    #[ORM\OneToMany(mappedBy: 'tournament', targetEntity: Game::class)]
+    private Collection $games;
+
     public function __construct()
     {
         $this->game = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +151,36 @@ class Tournament
     public function setDescription(?string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Game>
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Game $game): self
+    {
+        if (!$this->games->contains($game)) {
+            $this->games->add($game);
+            $game->setTournament($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGame(Game $game): self
+    {
+        if ($this->games->removeElement($game)) {
+            // set the owning side to null (unless already changed)
+            if ($game->getTournament() === $this) {
+                $game->setTournament(null);
+            }
+        }
 
         return $this;
     }

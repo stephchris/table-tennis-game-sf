@@ -3,48 +3,43 @@
 {% block title %}Liste des tournois{% endblock %}
 
 {% block body %}
-    <div class="col-span-4 h-screen">
-    <h1 class="text-5xl">Tous les tournois</h1>
+    <div class="">
+    <h1 class="text-5xl py-16">Tous les tournois</h1>
 
-    <p>Organiser un tournoi</p>
-
-
-
-    <table class="table">
+    <table class="my-8">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>DateStart</th>
+                <th>Nom du tournoi</th>
+                <th>Date</th>
                 <th>DateEnd</th>
                 <th>Description</th>
                 <th>Type</th>
-                <th>PlayerNumber</th>
-                <th>TableNumber</th>
-                <th>Image</th>
-                <th>actions</th>
+                <th>Nombre de joueurs</th>
+                <th>Nombre de tables</th>
             </tr>
         </thead>
         <tbody>
         {% for tournament in tournaments %}
+
             <tr>
-                <td>{{ tournament.id }}</td>
+
                 <td>{{ tournament.name }}</td>
-                <td>{{ tournament.dateStart ? tournament.dateStart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tournament.dateStart ? tournament.dateStart|date('Y-m-d H:i') : '' }}</td>
                 <td>{{ tournament.dateEnd ? tournament.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ tournament.description }}</td>
                 <td>{{ tournament.type }}</td>
                 <td>{{ tournament.playerNumber }}</td>
                 <td>{{ tournament.tableNumber }}</td>
-                <td>{{ tournament.image }}</td>
+
                 <td>
-                    <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">show</a>
+                    <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+                    <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
                     <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="10">Pas de tournois prévus</td>
             </tr>
         {% endfor %}
         </tbody>
