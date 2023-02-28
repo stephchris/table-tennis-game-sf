@@ -3,7 +3,8 @@ module.exports = {
   content: [
     "./assets/**/*.js",
     "./templates/**/*.html.twig",
-    "./node_modules/tw-elements/dist/js/**/*.js"
+    "./node_modules/tw-elements/dist/js/**/*.js",
+    //"./public/**/*.jpg"
   ],
   theme: {
     backgroundColor: theme => ({
@@ -15,13 +16,13 @@ module.exports = {
 
     extend: {
       backgroundImage: {
-        'bg_table_tennis': "url('C:\\wamp64\\www\\patinoire\\table-tennis-game-sf\\public\\uploads\\bg_table_tennis.jpeg')",
+        'table_tennis': "url('/public/uploads/bg_table_tennis.jpg')",
       },
     },
   },
 
   plugins: [
-      require('tw-elements/dist/plugin')
+    require ('tw-elements/dist/plugin')
   ],
 }
 

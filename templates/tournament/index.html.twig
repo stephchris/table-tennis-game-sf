@@ -33,8 +33,9 @@
 
                 <td>
                     <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
-                    <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
-                    <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">edit</a>
+                        <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
+                    <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+                        <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">Modifier</a></button>
                 </td>
             </tr>
         {% else %}
@@ -46,8 +47,8 @@
     </table>
 
 
-
-    <a href="{{ path('app_tournament_new') }}">Create new</a>
+        <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+            <a href="{{ path('app_tournament_new') }}">Créer un tournoi</a></button>
     </div>
     </div>
 {% endblock %}

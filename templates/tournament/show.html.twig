@@ -48,9 +48,10 @@
                     </tbody>
                 </table>
 
-                                <a href="{{ path('app_tournament_index') }}">back to list</a>
-
-                                <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">edit</a>
+                            <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+                                <a href="{{ path('app_tournament_index') }}">Retour à la liste</a></button>
+                            <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+                                <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">modifier</a></button>
 
                                 {{ include('tournament/_delete_form.html.twig') }}
         </div>

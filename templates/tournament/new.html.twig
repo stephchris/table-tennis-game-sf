@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Tournament{% endblock %}
+{% block title %}Création d'un nouveau tournoi{% endblock %}
 
 {% block body %}
-    <h1>Create new Tournament</h1>
+    <h1 class="text-5xl py-16">Créer un nouveau tournoi</h1>
 
     {{ include('tournament/_form.html.twig') }}
-
-    <a href="{{ path('app_tournament_index') }}">back to list</a>
+    <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+        <a href="{{ path('app_tournament_index') }}">Retour à la liste</a></button>
 
     </div>
 {% endblock %}
