@@ -3,8 +3,7 @@ module.exports = {
   content: [
     "./assets/**/*.js",
     "./templates/**/*.html.twig",
-    "./node_modules/tw-elements/dist/js/**/*.js",
-    //"./public/**/*.jpg"
+    "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   theme: {
     backgroundColor: theme => ({
