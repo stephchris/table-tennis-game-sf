@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="bg-lightblue">
+<html class="bg-gray-200">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -18,29 +18,35 @@
 
 <body>
 
-        <div >
-            <h1 class="text-5xl pl-28 my-20 s:my-0 text-[#fe0000] py-8">
-                <a href="{{ path('homepage') }}">
-                    Table Tennis Game </a>
-            </h1>
+
 
 
         <div class="flex justify-between">
-            <nav class="h-screen text-3xl font-bold text-white">
+            <nav class="h-screen text-3xl font-bold text-lightblue">
                 <ul class="px-12 pt-20">
                     <div class="pb-12">
+                        <li><a href="{{ path('homepage') }}">
+                            Table Tennis Game </a></li>
                         <li><a href="{{ path('app_tournament_index') }}">Tournois</a></li>
                     </div>
                     <div class="pb-12">
                         <li><a href="{{ path('app_user_index') }}">Membres</a></li>
                     </div>
                     <li><a href="{{ path('app_user_index') }}">Classement</a></li>
+                </ul>
 
+                <ul>
+                    {# si l'utilisateur est connecté #}
+                    {% if app.user %}
+                    <li><a href="{{ path('app_logout') }}">Déconnection</a></li>
+
+                    {% else%}
                     <li><a href="{{ path('app_login') }}">Connection</a></li>
                     <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
 
-
+                    {% endif %}
                 </ul>
+
 
 
             </nav>
