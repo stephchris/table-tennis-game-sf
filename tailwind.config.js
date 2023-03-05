@@ -8,14 +8,14 @@ module.exports = {
   theme: {
     backgroundColor: theme => ({
       ...theme('colors'),
-      'blue': '#011e98',
+      //'blue': '#011e98',
       'lightblue': '#5875f1',
       'bluesky': '#9cacef',
     }),
 
     extend: {
-      backgroundImage: {
-        'table_tennis': "url('/public/uploads/bg_table_tennis.jpg')",
+      fontFamily: {
+        source: ["Source Sans Pro"],
       },
     },
   },

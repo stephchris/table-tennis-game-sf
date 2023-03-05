@@ -6,9 +6,11 @@ use App\Entity\Tournament;
 use App\Form\TournamentType;
 use App\Repository\TournamentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\FileUploader;
 
 #[Route('/tournament')]
 class TournamentController extends AbstractController
@@ -23,13 +25,20 @@ class TournamentController extends AbstractController
 
 
     #[Route('/new', name: 'app_tournament_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TournamentRepository $tournamentRepository): Response
+    public function new(Request $request, FileUploader $fileUploader, TournamentRepository $tournamentRepository): Response
     {
         $tournament = new Tournament();
         $form = $this->createForm(TournamentType::class, $tournament);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var UploadedFile $brochureFile */
+            $brochureFile = $form->get('photo')->getData();
+                if ($brochureFile) {
+                    $brochureFileName = $fileUploader->upload($brochureFile);
+                    $tournament->setImage($brochureFileName);
+                }
             $tournamentRepository->save($tournament, true);
 
             return $this->redirectToRoute('app_tournament_index', [], Response::HTTP_SEE_OTHER);

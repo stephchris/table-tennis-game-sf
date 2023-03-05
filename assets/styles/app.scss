@@ -12,3 +12,7 @@ body {
   min-height: 100vh;
 }
 
+button {
+
+  @apply bg-blue-300 rounded-full px-8 py-2 h-10 border-2 text-white ;
+}

@@ -3,11 +3,13 @@
 {% block title %}Création d'un nouveau tournoi{% endblock %}
 
 {% block body %}
-    <h1 class="text-5xl py-16">Créer un nouveau tournoi</h1>
+    <div class="container mt-8 mr-96">
+    <h1 class="text-5xl font-Source Sans Pro Regular  py-16">Créer un nouveau tournoi</h1>
 
     {{ include('tournament/_form.html.twig') }}
-    <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+    <button>
         <a href="{{ path('app_tournament_index') }}">Retour à la liste</a></button>
 
+    </div>
     </div>
 {% endblock %}

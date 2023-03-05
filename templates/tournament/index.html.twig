@@ -3,8 +3,9 @@
 {% block title %}Liste des tournois{% endblock %}
 
 {% block body %}
+    <div class="container mt-8 mr-96">
 
-    <div class="bg-white pb-36">
+    <div class="bg-white pb-36 px-12">
     <h1 class="text-5xl py-16">Tous les tournois</h1>
 
     <table class="my-8">
@@ -34,9 +35,9 @@
 
 
                 <td>
-                    <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+                    <button>
                         <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
-                    <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+                    <button>
                         <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">Modifier</a></button>
                 </td>
             </tr>
@@ -49,8 +50,9 @@
     </table>
 
 
-        <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+        <button>
             <a href="{{ path('app_tournament_new') }}">Créer un tournoi</a></button>
+    </div>
     </div>
     </div>
 {% endblock %}

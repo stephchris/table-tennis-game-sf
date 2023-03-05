@@ -22,7 +22,7 @@ class TournamentType extends AbstractType
             ->add('playerNumber')
             ->add('tableNumber')
             ->add('photo', FileType::class, [
-                'label' => 'Illustration ()',
+                'label' => 'Illustration',
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,

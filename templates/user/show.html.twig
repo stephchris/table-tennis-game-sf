@@ -3,7 +3,11 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>{{ user.firstName }}{{ user.lastName }}</h1>
+<div class="container mt-8 mr-96">
+    <h1 class="text-5xl py-16">{{ user.firstName }}{{ user.lastName }}</h1>
+
+
+    <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-[#bbd2e1] px-6 py-4">
 
     <table class="table">
         <tbody>
@@ -41,18 +45,20 @@
                 <td>{{ user.city }}</td>
             </tr>
 
-            <tr>
-                <th>Image</th>
-                <td>{{ user.image }}</td>
-            </tr>
+            <img src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}">
+
         </tbody>
     </table>
 
 
-
+        <button>
     <a href="{{ path('app_user_index') }}">Retour à la liste</a>
-
+            </button>
+            <button>
     <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-
+            </button>
     {{ include('user/_delete_form.html.twig') }}
+    </div>
+</div>
+    </div>
 {% endblock %}

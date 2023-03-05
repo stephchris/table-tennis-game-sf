@@ -3,8 +3,8 @@
 {% block title %}Liste des membres{% endblock %}
 
 {% block body %}
-    <div class="container mt-8 mr-96">
-<div class="bg-white pb-36">
+    <div class="container mt-8 mr-92">
+<div class="bg-white pb-36 px-12">
     <h1 class="text-5xl py-16">Liste des membres</h1>
 
     <table class="my-8">
@@ -21,8 +21,8 @@
                 <th>Ville</th>
 
 
-                <th>Image</th>
-                <th>actions</th>
+
+
             </tr>
         </thead>
         <tbody>
@@ -39,21 +39,25 @@
                 <td>{{ user.zipcode }}</td>
                 <td>{{ user.city }}</td>
 
-                <td>{{ user.image }}</td>
+
                 <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    <button>
+                        <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a></button>
+                    <button>
+                        <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a></button>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="14">Pas de membres inscrits</td>
+                <td colspan="10">Pas de tournois prévus</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    <button>
     <a href="{{ path('app_user_new') }}">Enregistrer un nouveau membre</a>
+    </button>
 
 </div>
     </div>
