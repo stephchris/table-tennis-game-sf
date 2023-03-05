@@ -17,7 +17,17 @@
 
 
 <body>
+<ul>
+    {# si l'utilisateur est connecté #}
+    {% if app.user %}
+        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
 
+    {% else%}
+        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+        <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
+
+    {% endif %}
+</ul>
 
 
 
@@ -25,27 +35,18 @@
             <nav class="h-screen text-3xl font-bold text-lightblue">
                 <ul class="px-12 pt-20">
                     <div class="pb-12">
-                        <li><a href="{{ path('homepage') }}">
-                            Table Tennis Game </a></li>
+                        <li><a href="{{ path('homepage') }}">Accueil </a></li>
                         <li><a href="{{ path('app_tournament_index') }}">Tournois</a></li>
                     </div>
                     <div class="pb-12">
                         <li><a href="{{ path('app_user_index') }}">Membres</a></li>
                     </div>
-                    <li><a href="{{ path('app_user_index') }}">Classement</a></li>
+                    <div class="pb-12">
+                        <li><a href="{{ path('app_user_index') }}">Classement</a></li>
+                    </div>
                 </ul>
 
-                <ul>
-                    {# si l'utilisateur est connecté #}
-                    {% if app.user %}
-                    <li><a href="{{ path('app_logout') }}">Déconnection</a></li>
 
-                    {% else%}
-                    <li><a href="{{ path('app_login') }}">Connection</a></li>
-                    <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-
-                    {% endif %}
-                </ul>
 
 
 

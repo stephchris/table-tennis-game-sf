@@ -3,19 +3,32 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
 class UserFixtures extends Fixture
 {
+
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
+
+        $today = new \DateTimeImmutable();
+
         $tom = new User();
         $tom->setFirstName('Tom');
         $tom->setLastName('NICOLE');
         $tom->setGender('Homme');
+        $tom->setBirthDate($today->modify('2005-01-27'));
         $tom->setAddress('29 rue d\'Oran');
         $tom->setZipcode('35400');
         $tom->setCity('SAINT-MALO');
@@ -29,6 +42,7 @@ class UserFixtures extends Fixture
         $esteban->setFirstName('Esteban');
         $esteban->setLastName('NICOLE');
         $esteban->setGender('Homme');
+        $esteban->setBirthDate($today->modify('2009-01-22'));
         $esteban->setAddress('10 square de Penthièvre');
         $esteban->setZipcode('35400');
         $esteban->setCity('SAINT-MALO');
@@ -44,6 +58,12 @@ class UserFixtures extends Fixture
         $manager->flush();
     }
 
-
+    public function getDependencies()
+    {
+        return [
+            GameFixtures::class,
+            TournamentFixtures::class,
+        ];
+    }
 
 }

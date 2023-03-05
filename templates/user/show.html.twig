@@ -7,22 +7,7 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
+
             <tr>
                 <th>FirstName</th>
                 <td>{{ user.firstName }}</td>
@@ -40,6 +25,10 @@
                 <td>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
+                <th>Ranking</th>
+                <td>{{ user.ranking }}</td>
+            </tr>
+            <tr>
                 <th>Address</th>
                 <td>{{ user.address }}</td>
             </tr>
@@ -51,10 +40,7 @@
                 <th>City</th>
                 <td>{{ user.city }}</td>
             </tr>
-            <tr>
-                <th>Ranking</th>
-                <td>{{ user.ranking }}</td>
-            </tr>
+
             <tr>
                 <th>Image</th>
                 <td>{{ user.image }}</td>

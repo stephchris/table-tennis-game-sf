@@ -3,13 +3,14 @@
 {% block title %}Liste des membres{% endblock %}
 
 {% block body %}
+    <div class="container mt-8 mr-96">
 <div class="bg-white pb-36">
     <h1 class="text-5xl py-16">Liste des membres</h1>
 
     <table class="my-8">
         <thead>
             <tr>
-                <th>Id</th>
+
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Genre</th>
@@ -18,9 +19,8 @@
                 <th>Adresse</th>
                 <th>Code postal</th>
                 <th>Ville</th>
-                <th>Email</th>
-                <th>Mot de passe</th>
-                <th>Roles</th>
+
+
                 <th>Image</th>
                 <th>actions</th>
             </tr>
@@ -28,18 +28,17 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
+
+
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.gender }}</td>
                 <td>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</td>
+                <td>{{ user.ranking }}</td>
                 <td>{{ user.address }}</td>
                 <td>{{ user.zipcode }}</td>
                 <td>{{ user.city }}</td>
-                <td>{{ user.ranking }}</td>
+
                 <td>{{ user.image }}</td>
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
@@ -55,4 +54,8 @@
     </table>
 
     <a href="{{ path('app_user_new') }}">Enregistrer un nouveau membre</a>
+
+</div>
+    </div>
+    </div>
 {% endblock %}
