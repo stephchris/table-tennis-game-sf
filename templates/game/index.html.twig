@@ -3,17 +3,17 @@
 {% block title %}Game index{% endblock %}
 
 {% block body %}
-    <h1>Game index</h1>
+    <h1>Matchs</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>RoundNumber</th>
-                <th>TableNumber</th>
-                <th>ScorePlayerOne</th>
-                <th>ScorePlayerTwo</th>
-                <th>actions</th>
+                <th>Match n°</th>
+                <th>Table n°</th>
+                <th>Score Joueur 1 </th>
+                <th>Score Joueur 2</th>
+
             </tr>
         </thead>
         <tbody>
@@ -38,4 +38,6 @@
     </table>
 
     <a href="{{ path('app_game_new') }}">Create new</a>
+
+    </div>
 {% endblock %}

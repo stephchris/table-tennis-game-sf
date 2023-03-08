@@ -7,34 +7,31 @@
     <div class="container mt-8 mr-96">
         <h1 class="text-5xl py-16">{{ tournament.name }}</h1>
 
-        <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-[#bbd2e1] px-6 py-4">
+        <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-6 py-4">
 
                 <table class="table">
-                    <tbody>
+                    <tbody class="text-left">
 
 
                                 <tr>
-                                    <th>DateStart</th>
+                                    <th>Date :</th>
                                     <td>{{ tournament.dateStart ? tournament.dateStart|date('Y-m-d H:i:s') : '' }}</td>
                                 </tr>
+
                                 <tr>
-                                    <th>DateEnd</th>
-                                    <td>{{ tournament.dateEnd ? tournament.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Description</th>
+                                    <th>Description :</th>
                                     <td>{{ tournament.description }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Type</th>
+                                    <th>Type :</th>
                                     <td>{{ tournament.type }}</td>
                                 </tr>
                                 <tr>
-                                    <th>PlayerNumber</th>
+                                    <th>Nombre de joueurs :</th>
                                     <td>{{ tournament.playerNumber }}</td>
                                 </tr>
                                 <tr>
-                                    <th>TableNumber</th>
+                                    <th>Nombre de tables :</th>
                                     <td>{{ tournament.tableNumber }}</td>
                                 </tr>
 

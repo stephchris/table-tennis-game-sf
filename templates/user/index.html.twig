@@ -4,12 +4,12 @@
 
 {% block body %}
     <div class="container mt-8 mr-92">
-<div class="bg-white pb-36 px-12">
+<div class="bg-white mr-36 pb-36 px-12">
     <h1 class="text-5xl py-16">Liste des membres</h1>
 
     <table class="my-8">
         <thead>
-            <tr>
+            <tr class="text-lg font-normal">
 
                 <th>Prénom</th>
                 <th>Nom</th>
@@ -27,7 +27,7 @@
         </thead>
         <tbody>
         {% for user in users %}
-            <tr>
+            <tr class="text-sm font-normal">
 
 
                 <td>{{ user.firstName }}</td>
@@ -45,18 +45,19 @@
                         <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a></button>
                     <button>
                         <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a></button>
+
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">Pas de tournois prévus</td>
+                <td colspan="10">Pas de membres inscrits</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
     <button>
-    <a href="{{ path('app_user_new') }}">Enregistrer un nouveau membre</a>
+    <a href="{{ path('app_user_new') }}">Créer un membre</a>
     </button>
 
 </div>

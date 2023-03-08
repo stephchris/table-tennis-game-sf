@@ -10,12 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class  DefaultController extends AbstractController
 {
     #[Route('/', name: 'homepage')]
-    public function index(): Response
+    public function index(TournamentRepository $tournamentRepository ): Response
     {
-
+        $tournaments = $tournamentRepository->findFuture();
 
         return $this->render('default/index.html.twig', [
-
+            'tournaments' => $tournaments
         ]);
     }
 }

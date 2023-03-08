@@ -3,43 +3,59 @@
 {% block title %}Table Tennis Game{% endblock %}
 
 {% block body %}
-    <div class="container mt-8 mr-96">
+    <section class="container mr-96 pr-96">
 {#  <div class="bg-cover h-screen w-screen" style="background-image: url('{{ asset('uploads/bg_table_tennis.jpeg') }}');">#}
 
     <div class=" flex-row pt-20">
 
-        <div class="px-12 grid grid-cols-4 gap-12 text-white text-center font-source-bold ">
+        <div class="px-12 grid grid-cols-4 gap-12 text-blue-400 text-center font-source-bold ">
 
 
                 <img src= {{  asset('uploads/logo.jpg') }} ;" alt="logo du club" class="ml-12">
-                <div class="members border-white border-2 rounded-lg py-4">
+                <div class="members border-blue-400 border-2 rounded-lg py-4">
                     <i class="fa-solid fa-user-group"></i>
                     <p><a href="{{ path('app_user_index') }}">XX Membres</a></p>
                 </div>
-                <div class="tournaments border-white border-2 rounded-lg py-4">
+                <div class="tournaments border-blue-400 border-2 rounded-lg py-4">
                     <i class="fa-solid fa-trophy"></i>
                     <p><a href="{{ path('app_tournament_index') }}">XX Tournois</a></p>
                 </div>
-            <div class="ranking border-white border-2 rounded-lg py-4">
+                <div class="ranking border-blue-400 border-2 rounded-lg py-4">
                     <i class="fa-solid fa-list-ol"></i>
                     <p>Classement</p>
 
-            </div>
+                </div>
 
 
         </div>
+    </div>
 
-
-
-
+    </section>
+<section>
     <div class="mx-12 mt-24">
-        <div class="bg-contain bg-no-repeat h-screen max-w-screen-lg" style="background-image: url('{{ asset('uploads/calendar.png') }}');">
-    <p class="text-center text-xl font-bold pt-10 pl-60"><a href="{{ path('app_tournament_new') }}">Organiser un nouveau tournoi <i class="fa-sharp fa-solid fa-chevron-right"></i></a></p>
-    </div>
+        <div class="bg-contain bg-no-repeat max-w-screen-lg" style="background-image: url('{{ asset('uploads/calendar.png') }}');">
+            <p class="text-center text-xl font-bold pt-10 pl-44"><a href="{{ path('app_tournament_new') }}">Organiser un nouveau tournoi <i class="fa-sharp fa-solid fa-chevron-right"></i></a></p>
+        </div>
+
 
     </div>
-    </div>
-</div>
+</section>
+
+    <section class="container">
+        <h1 class="text-5xl">Prochains tournois</h1>
+        <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-6 py-4">
+        <div class="grid">
+
+            {% for tournament in tournaments %}
+                {% include 'tournament/_card.html.twig' with {'tournament': tournament} only %}
+            {% endfor %}
+
+        </div>
+        </div>
+</section>
+    <section class="container">
+        <h1 class="text-5xl">Tournois Passés</h1>
+    </section>
 
 
 

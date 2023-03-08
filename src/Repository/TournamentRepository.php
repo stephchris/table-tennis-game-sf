@@ -39,6 +39,19 @@ class TournamentRepository extends ServiceEntityRepository
         }
     }
 
+    public function findFuture(int $limit = 4): array
+    {
+        // SELECT*FROM gig WHERE date_start > NOW() ORDER BY date_start ASC LIMIT 4
+        return $this->createQueryBuilder('tournament')
+            ->where('tournament.dateStart > :today')
+            ->orderBy('tournament.dateStart', 'ASC')
+            ->setMaxResults($limit)
+            ->setParameter(':today', new \DateTime())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Tournament[] Returns an array of Tournament objects
 //     */

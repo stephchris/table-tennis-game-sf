@@ -1,0 +1,12 @@
+<article class="card">
+
+        <img src="{{ asset('uploads/' ~ tournament.image) }}" alt={{"tournament.name"}}>
+
+    <h3>{{ tournament.name }}</h3>
+    <time datetime="{{ tournament.dateStart|date('Y-m-d h:i') }}">
+        {{ tournament.dateStart|date('l jS \\o\\f F \\a\\t g:i a') }}
+    </time>
+    <button>
+    <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}" class="btn btn-primary">Détails</a>
+    </button>
+</article>

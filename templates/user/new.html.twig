@@ -3,11 +3,14 @@
 {% block title %}Création d'un nouvel utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouvel utilisateur</h1>
+    <div class="container mt-8 mr-96">
+        <h1 class="text-5xl font-Source Sans Pro Regular  py-16">Créer un nouvel utilisateur</h1>
 
     {{ include('user/_form.html.twig') }}
 
+        <button>
     <a href="{{ path('app_user_index') }}">back to list</a>
-
+        </button>
+    </div>
     </div>
 {% endblock %}

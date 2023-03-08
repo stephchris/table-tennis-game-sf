@@ -45,7 +45,7 @@ class UserFixtures extends Fixture
         $esteban->setLastName('NICOLE');
         $esteban->setGender('Homme');
         $esteban->setRanking('914');
-        $esteban->setBirthDate($today->modify('2009-01-22'));
+        $esteban->setBirthDate($today->modify('22-01-2009'));
         $esteban->setAddress('10 square de Penthièvre');
         $esteban->setZipcode('35400');
         $esteban->setCity('SAINT-MALO');
@@ -62,12 +62,6 @@ class UserFixtures extends Fixture
         $manager->flush();
     }
 
-    public function getDependencies()
-    {
-        return [
-            GameFixtures::class,
-            TournamentFixtures::class,
-        ];
-    }
+
 
 }

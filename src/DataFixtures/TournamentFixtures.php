@@ -15,7 +15,7 @@ class TournamentFixtures extends Fixture implements DependentFixtureInterface
 
         $corsaire = new Tournament();
         $corsaire->setName('Tournoi des Corsaires');
-        $corsaire->setDateStart($today->modify('+4 month +1 day'));
+        $corsaire->setDateStart($today->modify('2023-03-06 18:30'));
         $corsaire->setType('mixte');
         $corsaire->setDescription('Venez vous affronter, que le meilleur corsaire gagne');
         $corsaire->setPlayerNumber('12');

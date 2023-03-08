@@ -12,7 +12,29 @@ body {
   min-height: 100vh;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Helvetica+&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed+&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Condensed', serif;
+}
+
+p, th, td,a {
+  font-family: 'Helvetica', serif;
+}
+
+
+a {
+  font-family: 'Roboto', serif;
+}
+
 button {
 
   @apply bg-blue-300 rounded-full px-8 py-2 h-10 border-2 text-white ;
 }
+
+h1 {
+  @apply text-5xl py-16
+}
+
