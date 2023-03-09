@@ -18,15 +18,18 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto Condensed', serif;
+  @apply text-sky-700
 }
 
-p, th, td,a {
+p, th, td {
   font-family: 'Helvetica', serif;
+  @apply text-sky-700
 }
 
 
 a {
   font-family: 'Roboto', serif;
+  @apply text-sky-800
 }
 
 button {

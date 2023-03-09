@@ -56,7 +56,11 @@ class UserFixtures extends Fixture
         $manager->persist($esteban);
         $this->addReference('esteban-nicole', $esteban);
 
-
+        $admin = new User();
+        $admin->setEmail('admin@ttg.com');
+        $admin->setPassword($this->hasher->hashPassword($admin, 'admin'));
+        $admin->setRoles(['ROLE_ADMIN']);
+        $manager->persist($admin);
 
 
         $manager->flush();

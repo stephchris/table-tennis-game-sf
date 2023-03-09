@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Tournament;
 use App\Form\TournamentType;
 use App\Repository\TournamentRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,6 +26,7 @@ class TournamentController extends AbstractController
 
 
     #[Route('/new', name: 'app_tournament_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_MANAGER')]
     public function new(Request $request, FileUploader $fileUploader, TournamentRepository $tournamentRepository): Response
     {
         $tournament = new Tournament();
@@ -59,6 +61,7 @@ class TournamentController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_tournament_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_MANAGER')]
     public function edit(Request $request, Tournament $tournament, TournamentRepository $tournamentRepository): Response
     {
         $form = $this->createForm(TournamentType::class, $tournament);
@@ -77,6 +80,7 @@ class TournamentController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_tournament_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_MANAGER')]
     public function delete(Request $request, Tournament $tournament, TournamentRepository $tournamentRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$tournament->getId(), $request->request->get('_token'))) {
