@@ -16,11 +16,11 @@ use App\Service\FileUploader;
 #[Route('/tournament')]
 class TournamentController extends AbstractController
 {
-    #[Route('/tournament', name: 'app_tournament_index', methods: ['GET'])]
+    #[Route('/', name: 'app_tournament_index', methods: ['GET'])]
     public function index(TournamentRepository $tournamentRepository): Response
     {
         return $this->render('tournament/index.html.twig', [
-            'tournaments' => $tournamentRepository->findAll(),
+            'tournaments' => $tournamentRepository->findFuture(),
         ]);
     }
 
