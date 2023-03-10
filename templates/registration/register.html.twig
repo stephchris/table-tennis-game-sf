@@ -6,28 +6,43 @@
 <div class="container mt-8 mr-96">
     <h1 class="text-5xl py-16">S'inscrire</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.firstname, {
+    {{ form_start(userType) }}
+        {{ form_row(userType.firstName, {
             label: 'Prénom'
         }) }}
-        {{ form_row(registrationForm.lastname, {
+        {{ form_row(userType.lastName, {
             label: 'Nom'
         }) }}
-        {{ form_row(registrationForm.gender, {
+        {{ form_row(userType.gender, {
             label: 'Genre'
         }) }}
-        {{ form_row(registrationForm.birthdate, {
+        {{ form_row(userType.birthDate, {
             label: 'Date de naissance'
         }) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
+    {{ form_row(userType.address, {
+        label: 'rue'
+    }) }}
+    {{ form_row(userType.zipcode, {
+        label: 'Code Postal'
+    }) }}
+    {{ form_row(userType.city, {
+        label: 'Ville'
+    }) }}
+    {{ form_row(userType.ranking, {
+        label: 'Classement'
+    }) }}
+    {{ form_row(userType.image, {
+        label: 'Photo'
+    }) }}
+        {{ form_row(userType.email) }}
+        {{ form_row(userType.plainPassword, {
             label: 'Mot de Passe'
         }) }}
 
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(userType.agreeTerms) }}
 
         <button type="submit">Valider</button>
-    {{ form_end(registrationForm) }}
+    {{ form_end(userType) }}
 
 </div>
 </div>

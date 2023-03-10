@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Form\UserType;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +25,7 @@ class RegistrationController extends AbstractController
     {
         $user = new User();
         $user->getRoles(['ROLE_USER']);
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -36,7 +37,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $image = $form->get('photo')->getData();
+            $image = $form->get('image')->getData();
             if ($image) {
                 $fileName = $fileUploader->upload($image);
                 $user->setImage($fileName);
@@ -50,7 +51,7 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
+            'userType' => $form->createView(),
         ]);
     }
 }

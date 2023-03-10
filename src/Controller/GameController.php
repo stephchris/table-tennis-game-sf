@@ -6,11 +6,13 @@ use App\Entity\Game;
 use App\Form\GameType;
 use App\Repository\GameRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/game')]
+#[IsGranted('ROLE_ADMIN')]
 class GameController extends AbstractController
 {
     #[Route('/game', name: 'app_game', methods: ['GET'])]

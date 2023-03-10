@@ -28,8 +28,9 @@ p, th, td {
 
 
 a {
+
   font-family: 'Roboto', serif;
-  @apply text-sky-800
+  @apply text-sky-800 text-2xl
 }
 
 button {
@@ -39,5 +40,9 @@ button {
 
 h1 {
   @apply text-5xl py-16
+}
+
+li {
+  @apply pb-12
 }
 

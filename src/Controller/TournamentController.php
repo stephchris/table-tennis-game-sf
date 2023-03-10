@@ -26,7 +26,7 @@ class TournamentController extends AbstractController
 
 
     #[Route('/new', name: 'app_tournament_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_MANAGER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, FileUploader $fileUploader, TournamentRepository $tournamentRepository): Response
     {
         $tournament = new Tournament();
@@ -36,7 +36,7 @@ class TournamentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             /** @var UploadedFile $brochureFile */
-            $brochureFile = $form->get('photo')->getData();
+            $brochureFile = $form->get('image')->getData();
                 if ($brochureFile) {
                     $brochureFileName = $fileUploader->upload($brochureFile);
                     $tournament->setImage($brochureFileName);
@@ -61,7 +61,7 @@ class TournamentController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_tournament_edit', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_MANAGER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Tournament $tournament, TournamentRepository $tournamentRepository): Response
     {
         $form = $this->createForm(TournamentType::class, $tournament);
@@ -80,7 +80,7 @@ class TournamentController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_tournament_delete', methods: ['POST'])]
-    #[IsGranted('ROLE_MANAGER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Tournament $tournament, TournamentRepository $tournamentRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$tournament->getId(), $request->request->get('_token'))) {

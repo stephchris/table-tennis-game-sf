@@ -57,6 +57,8 @@ class UserFixtures extends Fixture
         $this->addReference('esteban-nicole', $esteban);
 
         $admin = new User();
+        $admin->setFirstName('ADMIN');
+        $admin->setBirthDate($today->modify('22-01-2009'));
         $admin->setEmail('admin@ttg.com');
         $admin->setPassword($this->hasher->hashPassword($admin, 'admin'));
         $admin->setRoles(['ROLE_ADMIN']);
