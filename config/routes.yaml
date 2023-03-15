@@ -7,3 +7,7 @@ controllers:
 app_logout:
     path: /logout
     methods: GET
+
+tournoi_inscription:
+    path: /tournoi/inscription/{id}
+    controller: App\Controller\TournoiController::inscription
