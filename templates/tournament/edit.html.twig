@@ -3,14 +3,16 @@
 {% block title %}Modifier un tournoi{% endblock %}
 
 {% block body %}
+    <div class="pb-36 px-12">
     <h1 class="text-5xl py-16">Modifier le tournoi</h1>
 
-    {{ include('tournament/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {{ include('tournament/_form.html.twig', {'button_label': 'Valider'}) }}
 
-    <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+        <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
         <a href="{{ path('app_tournament_index') }}">Retour à la liste</a></button>
 
     {{ include('tournament/_delete_form.html.twig') }}
 
+    </div>
     </div>
 {% endblock %}

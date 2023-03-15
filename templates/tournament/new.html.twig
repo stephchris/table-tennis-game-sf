@@ -3,13 +3,18 @@
 {% block title %}Création d'un nouveau tournoi{% endblock %}
 
 {% block body %}
-    <div class="container mt-8 mr-96">
-    <h1 class="text-5xl font-Source Sans Pro Regular  py-16">Créer un nouveau tournoi</h1>
-
+    <div class="mt-8">
+    <h1 class="text-5xl py-16">Créer un nouveau tournoi</h1>
+        <div class="flex justify-between">
+<div class="bg-white">
     {{ include('tournament/_form.html.twig') }}
     <button>
         <a href="{{ path('app_tournament_index') }}">Retour à la liste</a></button>
-
+</div>
+        <div class="grid grid-rows-3">
+        <img src="{{ asset('uploads/feuille_de_match.jpg') }}"; alt="feuille de match" class="object-scale-down h-48 w-96 rounded row-span-2">
+    </div>
+    </div>
     </div>
     </div>
 {% endblock %}

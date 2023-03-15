@@ -3,9 +3,9 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-<div class="container mt-8 mr-96">
+<div class="container mt-8 mr-96 bg-white">
     <h1 class="text-5xl py-16">S'inscrire</h1>
-
+<div class="form">
     {{ form_start(userType) }}
         {{ form_row(userType.firstName, {
             label: 'Prénom'
@@ -32,7 +32,7 @@
         label: 'Classement'
     }) }}
     {{ form_row(userType.image, {
-        label: 'Photo'
+        label: 'Photo de profil'
     }) }}
         {{ form_row(userType.email) }}
         {{ form_row(userType.plainPassword, {
@@ -43,7 +43,7 @@
 
         <button type="submit">Valider</button>
     {{ form_end(userType) }}
-
+</div>
 </div>
 </div>
 {% endblock %}

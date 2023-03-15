@@ -39,6 +39,18 @@ class TournamentRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function findAllFuture(): array
+    {
+        return $this->createQueryBuilder('tournament')
+            ->where('tournament.dateStart > :today')
+            ->orderBy('tournament.dateStart', 'ASC')
+            ->setParameter(':today', new \DateTime())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findFuture(int $limit = 4): array
     {
         // SELECT*FROM gig WHERE date_start > NOW() ORDER BY date_start ASC LIMIT 4
@@ -47,6 +59,29 @@ class TournamentRepository extends ServiceEntityRepository
             ->orderBy('tournament.dateStart', 'ASC')
             ->setMaxResults($limit)
             ->setParameter(':today', new \DateTime())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findPast(int $limit = 1): array
+    {
+        return $this->createQueryBuilder('tournament')
+            ->where('tournament.dateStart < :today')
+            ->orderBy('tournament.dateStart', 'DESC')
+            ->setMaxResults($limit)
+            ->setParameter(':today', new \DateTime())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findUserInTournament(): array
+    {
+        return $this->createQueryBuilder('tournament')
+            ->addSelect('user')
+            ->join('tournament.user', 'user')
+            ->orderBy('user.firstName', 'ASC')
             ->getQuery()
             ->getResult()
             ;

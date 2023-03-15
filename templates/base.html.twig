@@ -1,68 +1,95 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
 
 
-    <nav class=" bg-sky-200 text-xl ">
-        <div class="pr-12 grid place-content-end">
-    {# si l'utilisateur est connecté #}
+<nav class="bg-[#313485] text-xl h-48  px-12 grid grid-cols-3">
+    <div class="">
+        <a href="{{ path('homepage') }}">
+            <img src="{{ asset('uploads/logoTTG.png') }}" alt="logo du site" class="pl-8>">
+        </a>
+    </div>
+
     {% if app.user %}
-        <a href="{{ path('app_logout') }}">Déconnexion</a>
-
-    {% else%}
-        <a href="{{ path('app_login') }}">Connexion</a>
-        <a href="{{ path('app_register') }}" class="text-sm">S'inscrire</a>
-
+        <div>
+            <img src="{{ asset('uploads/' ~ app.user.image) }}" class="w-24 h-24 rounded-full" alt="Avatar"/>
+            <h5 class="mb-2 text-xl font-medium leading-tight">
+                {{ "Bonjour " ~ app.user.fullName }}
+            </h5>
+        </div>
     {% endif %}
-        </div>
-    </nav>
+
+    <div class="flex flex-col  items-end mt-12">
+        {# si l'utilisateur est connecté #}
+
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}">Déconnexion</a>
+            <a href="{{ path('app_user_profile') }}" class="text-sm">Votre profil</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Connexion</a>
+            <a href="{{ path('app_register') }}" class="text-sm">S'inscrire</a>
+        {% endif %}
+    </div>
+</nav>
+
+
 <div class="flex">
-    <nav class="pl-2 py-8 w-64 bg-sky-200">
+    <nav class="pl-6 py- md:w-64 bg-[#313485]">
         <div class="hidden space-x-8 lg:flex">
-            {#  <div class="flex justify-between">#}
-                <div class="text-3xl font-bold">
-                    <ul class="px-12 pt-20">
-                            <li><a href="{{ path('homepage') }}">Accueil </a></li>
-                            <li><a href="{{ path('app_tournament_index') }}"><i class="fa-solid fa-trophy"></i>  Tournois</a></li>
-                            <li><a href="{{ path('app_user_index') }}"><i class="fa-solid fa-user-group"></i>Membres</a></li>
-                            <li><a href="{{ path('app_user_index') }}"><i class="fa-solid fa-list-ol"></i>  Classement</a></li>
-                            <li><a href="{{ path('app_game') }}">((Matchs))</a></li>
-                    </ul>
-                </div>
+            {#  <div class="flex justify-between"> #}
+            <div class="text-3xl font-bold">
+                <ul class="px-12 pt-8">
+                    <li></li>
+                    <li><a href="{{ path('app_tournament_index') }}"><i class="fa-solid fa-trophy"></i>Tournois</a></li>
+                    <li><a href="{{ path('app_user_index') }}"><i class="fa-solid fa-user-group"></i>Membres</a></li>
+                    <li><a href="{{ path('app_user_index') }}"><i class="fa-solid fa-list-ol"></i>Classement</a></li>
+                    <li><a href="{{ path('app_game') }}">((Matchs))</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="cursor-pointer flex lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-
+        <div class="cursor-pointer pl-8 flex lg:hidden">
+            <i class="fa-solid fa-bars"></i>
         </div>
     </nav>
 
 
-     <main>
+    <main>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         {% block body %}
 
         {% endblock %}
 
     </main>
+</div>
 
-    <footer class="bg-sky-200 ">
-            <p class="text-right text-white pt-4">Table Tennis Game &copy; 2023</p>
-    </footer>
+<footer class="bg-[#313485] ">
+    <p class="text-right text-white pt-4">Table Tennis Game &copy; 2023</p>
+</footer>
 
+</body>
 </html>

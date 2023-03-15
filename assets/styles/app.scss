@@ -8,6 +8,15 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/regular.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 
+
+html {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none
+;
+  @apply bg-[#313485]
+}
 body {
   min-height: 100vh;
 }
@@ -18,24 +27,24 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto Condensed', serif;
-  @apply text-sky-700
+  @apply text-[#ccd65c]
 }
 
-p, th, td {
+p, th, td, ul, li {
   font-family: 'Helvetica', serif;
-  @apply text-sky-700
+  @apply text-[#313485]
 }
 
 
-a {
+a, i {
 
   font-family: 'Roboto', serif;
-  @apply text-sky-800 text-2xl
+  @apply text-[#ccd65c] text-2xl
 }
 
-button {
+button  {
 
-  @apply bg-blue-300 rounded-full px-8 py-2 h-10 border-2 text-white ;
+  @apply bg-[#313485] rounded-full px-8 py-2 h-10 border-2 text-[#ccd65c] ;
 }
 
 h1 {

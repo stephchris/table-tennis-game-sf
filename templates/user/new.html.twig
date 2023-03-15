@@ -4,13 +4,14 @@
 
 {% block body %}
     <div class="container mt-8 mr-96">
-        <h1 class="text-5xl font-Source Sans Pro Regular  py-16">Créer un nouvel utilisateur</h1>
-
+        <h1 class="text-5xl py-16">Créer un nouvel utilisateur</h1>
+<div class="form">
     {{ include('user/_form.html.twig') }}
 
         <button>
     <a href="{{ path('app_user_index') }}">back to list</a>
         </button>
+    </div>
     </div>
     </div>
 {% endblock %}

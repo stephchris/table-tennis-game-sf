@@ -9,49 +9,51 @@
 
         <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-6 py-4">
 
-                <table class="table">
-                    <tbody class="text-left">
+            <img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}">
 
+            <p>Date :</p>
+            <p>{{ tournament.dateStart ? tournament.dateStart|date('d-m-Y H:i:s') : '' }}</p>
+            <p>Description :</p>
+            <p>{{ tournament.description }}</p>
+            <p>Type :</p>
+            <p>{{ tournament.type }}</p>
+            <p>Nombre de joueurs :</p>
+            <p>{{ tournament.playerNumber }}</p>
+            <p>Nombre de tables :</p>
+            <p>{{ tournament.tableNumber }}</p>
+            <p>Participants :</p>
+            <ul>
+                {% for player in tournament.players %}
+                    <li>
+                        {{ player.fullName }}
+                    </li>
+                {% endfor %}
+            </ul>
 
-                                <tr>
-                                    <th>Date :</th>
-                                    <td>{{ tournament.dateStart ? tournament.dateStart|date('Y-m-d H:i:s') : '' }}</td>
-                                </tr>
+            {% if tournament.hasPlayer(app.user) %}
+                <button>
+                    <a href="{{ path('app_tournament_participate', {'id': tournament.id}) }}">
+                    Se désinscrire
+                    </a>
+                </button>
+            {% elseif (tournament.availablePlayerNumber > 0) %}
+                <button>
+                    <a href="{{ path('app_tournament_participate', {'id': tournament.id}) }}">
+                        S'inscrire
+                    </a>
+                </button>
+            {% endif %}
 
-                                <tr>
-                                    <th>Description :</th>
-                                    <td>{{ tournament.description }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Type :</th>
-                                    <td>{{ tournament.type }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Nombre de joueurs :</th>
-                                    <td>{{ tournament.playerNumber }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Nombre de tables :</th>
-                                    <td>{{ tournament.tableNumber }}</td>
-                                </tr>
+            <button>
+                <a href="{{ path('app_tournament_index') }}">Retour à la liste</a>
+            </button>
 
-
-
-
-                                <img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}">
-
-
-
-                    </tbody>
-                </table>
-
-
-                            <button>
-                                <a href="{{ path('app_tournament_index') }}">Retour à la liste</a></button>
-                            <button>
-                                <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">modifier</a></button>
-
-                                {{ include('tournament/_delete_form.html.twig') }}
+            {% if is_granted('ROLE_ADMIN') %}
+                <button>
+                    <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">modifier</a>
+                </button>
+                {{ include('tournament/_delete_form.html.twig') }}
+            {% endif %}
         </div>
 
     </div>

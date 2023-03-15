@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use App\Service\FileUploader;
+use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +35,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             /** @var UploadedFile $brochureFile */
-            $brochureFile = $form->get('photo')->getData();
+            $brochureFile = $form->get('image')->getData();
             if ($brochureFile) {
                 $brochureFileName = $fileUploader->upload($brochureFile);
                 $user->setImage($brochureFileName);
@@ -58,8 +60,12 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    public function edit(Request $request, User $user, FileUploader $fileUploader, UserRepository $userRepository): Response
     {
+        if ($user->getId() !== $this->getUser()->getId()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -78,12 +84,34 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[Route('/user/profile', name: 'app_user_profile')]
+    #[IsGranted('ROLE_USER')]
+    public function profile(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $user = $this->getUser();
 
+        $form = $this->createForm(userType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $doctrine->getManager();
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->renderForm('/user/profile.html.twig', [
+            'form' => $form,
+        ]);
+    }
 }

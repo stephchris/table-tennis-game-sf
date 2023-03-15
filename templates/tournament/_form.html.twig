@@ -1,4 +1,7 @@
 {{ form_start(form) }}
+
     {{ form_widget(form) }}
-    <button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">{{ button_label|default('Sauvegarder') }}</button>
+    <button type="submit" class="bg-blue-300 rounded-full px-8 py-2 h-10 border-2 text-white">{{ button_label|default('Sauvegarder') }}</button>
+
 {{ form_end(form) }}
+

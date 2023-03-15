@@ -37,10 +37,10 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $image = $form->get('image')->getData();
-            if ($image) {
-                $fileName = $fileUploader->upload($image);
-                $user->setImage($fileName);
+            $brochureFile = $form->get('image')->getData();
+            if ($brochureFile) {
+                $brochureFileName = $fileUploader->upload($brochureFile);
+                $user->setImage($brochureFileName);
             }
 
             $entityManager->persist($user);

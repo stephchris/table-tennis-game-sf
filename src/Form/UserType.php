@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -21,10 +22,15 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('gender')
+            ->add('firstName', TextType::class, [
+                'required' => true,
+            ])
+            ->add('lastName', TextType::class, [
+                'required' => true,
+            ])
+            ->add('gender', TextType::class, [
+                'required' => true,
+            ])
             ->add('birthDate', DateType::class,  [
                 'placeholder' => [
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
@@ -33,7 +39,9 @@ class UserType extends AbstractType
             ->add('address')
             ->add('zipcode')
             ->add('city')
-            ->add('ranking')
+            ->add('ranking', TextType::class, [
+                'required' => true,
+            ])
             ->add('image', FileType::class, [
                 'attr' => ['accept' => 'image/*'],
                 'mapped' => false,
@@ -51,14 +59,7 @@ class UserType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid image',
                     ])
                 ]])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Veuillez accepter les conditions',
-                    ]),
-                ],
-            ])
+            ->add('email')
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -76,6 +77,15 @@ class UserType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Veuillez accepter les conditions',
+                    ]),
+                ],
+            ])
+
         ;
     }
 

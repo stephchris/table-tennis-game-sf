@@ -4,52 +4,93 @@
 
 {% block body %}
 
-<div class="pb-36 px-12">
-    <h1 class="text-5xl py-16">Liste des membres</h1>
+    <div class="pb-36 px-12">
+        <h1 class="text-5xl py-16">Liste des membres</h1>
 
-    <table class="my-8">
-        <thead>
-            <tr class="text-lg font-normal">
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Genre</th>
-                <th>Date de naissance</th>
-                <th>Classement</th>
-                <th>Adresse</th>
-                <th>Code postal</th>
-                <th>Ville</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr class="text-sm font-normal">
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.gender }}</td>
-                <td>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</td>
-                <td>{{ user.ranking }}</td>
-                <td>{{ user.address }}</td>
-                <td>{{ user.zipcode }}</td>
-                <td>{{ user.city }}</td>
-                <td>
-                    <button>
-                        <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a></button>
-                    <button>
-                        <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a></button>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">Pas de membres inscrits</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="flex">
+            <div class="mb-3 xl:w-96">
+                <div class="relative mb-4 flex">
+                    <input
+                            type="search"
+                            class="relative m-0 block w-[1%] min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                            placeholder="Rechercher"
+                            aria-label="Search"
+                            aria-describedby="button-addon2"/>
+                    <span
+                            class="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200"
+                            id="basic-addon2">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="h-5 w-5">
+          <path
+                  fill-rule="evenodd"
+                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                  clip-rule="evenodd"/>
+        </svg>
+      </span>
+                </div>
+            </div>
+        </div>
 
-    <button>
-    <a href="{{ path('app_user_new') }}">Créer un membre</a>
-    </button>
-</div>
+        <div class="bg-white">
 
+            <div class="grid grid-cols-4">
+                {% for user in users %}
+                <div class="text-lg font-normal">
+
+                    <p>Prénom</p>
+                    <p>Nom</p>
+                    <p>Genre</p>
+                    <p>Date de naissance</p>
+                    <p>Classement</p>
+                    <p>Adresse</p>
+                    <p>Code postal</p>
+                    <p>Ville</p>
+                </div>
+
+
+                    <div class="text-sm font-normal">
+                        <p>{{ user.firstName }}</p>
+                        <p>{{ user.lastName }}</p>
+                        <p>{{ user.gender }}</p>
+                        <p>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</p>
+                        <p>{{ user.ranking }}</p>
+                        <p>{{ user.address }}</p>
+                        <p>{{ user.zipcode }}</p>
+                        <p>{{ user.city }}</p>
+                    </div>
+                    <div>
+                        <img src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}"
+                             class="mx-auto mb-4 w-32 rounded-lg>">
+                    </div>
+
+                    <div>
+                        <button>
+                            <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a>
+                        </button>
+                        {% if app.user == user %}
+                            <button>
+                                <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                            </button>
+                        {% endif %}
+                    </div>
+
+                {% else %}
+
+                    <p colspan="10">Pas de membres inscrits</p>
+
+                {% endfor %}
+                <button>
+                    <a href="{{ path('app_user_new') }}">Créer un membre</a>
+                </button>
+
+            </div>
+        </div>
     </div>
+    </div>
+
+
+
 {% endblock %}

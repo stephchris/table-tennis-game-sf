@@ -20,13 +20,13 @@ class TournamentController extends AbstractController
     public function index(TournamentRepository $tournamentRepository): Response
     {
         return $this->render('tournament/index.html.twig', [
-            'tournaments' => $tournamentRepository->findFuture(),
+            'tournaments' => $tournamentRepository->findAllFuture(),
         ]);
     }
 
 
     #[Route('/new', name: 'app_tournament_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+
     public function new(Request $request, FileUploader $fileUploader, TournamentRepository $tournamentRepository): Response
     {
         $tournament = new Tournament();
@@ -46,7 +46,7 @@ class TournamentController extends AbstractController
             return $this->redirectToRoute('app_tournament_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tournament/new.html.twig', [
+        return $this->render('tournament/new.html.twig', [
             'tournament' => $tournament,
             'form' => $form,
         ]);
@@ -60,6 +60,22 @@ class TournamentController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/participate', name: 'app_tournament_participate', methods: ['GET'])]
+    public function participate(Tournament $tournament, TournamentRepository $tournamentRepository): Response
+    {
+        if ($tournament->hasPlayer($this->getUser())) {
+            $tournament->removePlayer($this->getUser());
+            $tournamentRepository->save($tournament, true);
+        } else if ($tournament->getAvailablePlayerNumber() > 0) {
+            $tournament->addPlayer($this->getUser());
+            $tournamentRepository->save($tournament, true);
+        } else {
+            $this->addFlash('error', 'Il ne reste plus de place sur ce tournoi');
+        }
+
+        return $this->redirectToRoute('app_tournament_show', ['id' => $tournament->getId()]);
+    }
+
     #[Route('/{id}/edit', name: 'app_tournament_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Tournament $tournament, TournamentRepository $tournamentRepository): Response
@@ -70,10 +86,10 @@ class TournamentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $tournamentRepository->save($tournament, true);
 
-            return $this->redirectToRoute('app_tournament_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_tournament_show', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tournament/edit.html.twig', [
+        return $this->render('tournament/edit.html.twig', [
             'tournament' => $tournament,
             'form' => $form,
         ]);
@@ -89,4 +105,8 @@ class TournamentController extends AbstractController
 
         return $this->redirectToRoute('app_tournament_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+
 }

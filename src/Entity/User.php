@@ -62,16 +62,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Image]
     private ?string $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'player_one', targetEntity: Game::class)]
-    private Collection $no;
+    #[ORM\OneToMany(mappedBy: 'playerOne', targetEntity: Game::class)]
+    private Collection $gamesAsPlayerOne;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Game::class)]
-    private Collection $games;
+    #[ORM\OneToMany(mappedBy: 'playerTwo', targetEntity: Game::class)]
+    private Collection $gamesAsPlayerTwo;
+
+    #[ORM\ManyToMany(targetEntity: Tournament::class, mappedBy: 'players')]
+    private Collection $tournaments;
 
     public function __construct()
     {
-        $this->no = new ArrayCollection();
-        $this->games = new ArrayCollection();
+        $this->gamesAsPlayerOne = new ArrayCollection();
+        $this->gamesAsPlayerTwo = new ArrayCollection();
+        $this->tournaments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,30 +256,65 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getFullName(): string
+    {
+        return $this->getFirstName(). ' ' . $this->getLastName();
+    }
+    
     /**
      * @return Collection<int, Game>
      */
-    public function getNo(): Collection
+    public function getGamesAsPlayerOne(): Collection
     {
-        return $this->no;
+        return $this->gamesAsPlayerOne;
     }
 
-    public function addNo(Game $no): self
+    public function addGameAsPlayerOne(Game $game): self
     {
-        if (!$this->no->contains($no)) {
-            $this->no->add($no);
-            $no->setPlayerOne($this);
+        if (!$this->gamesAsPlayerOne->contains($game)) {
+            $this->gamesAsPlayerOne->add($game);
+            $game->setPlayerOne($this);
         }
 
         return $this;
     }
 
-    public function removeNo(Game $no): self
+    public function removeGameAsPlayerOne(Game $game): self
     {
-        if ($this->no->removeElement($no)) {
+        if ($this->gamesAsPlayerOne->removeElement($game)) {
             // set the owning side to null (unless already changed)
-            if ($no->getPlayerOne() === $this) {
-                $no->setPlayerOne(null);
+            if ($game->getPlayerOne() === $this) {
+                $game->setPlayerOne(null);
+            }
+        }
+
+        return $this;
+    }
+    
+    /**
+     * @return Collection<int, Game>
+     */
+    public function getGamesAsPlayerTwo(): Collection
+    {
+        return $this->gamesAsPlayerTwo;
+    }
+
+    public function addGameAsPlayerTwo(Game $game): self
+    {
+        if (!$this->gamesAsPlayerTwo->contains($game)) {
+            $this->gamesAsPlayerTwo->add($game);
+            $game->setPlayerTwo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGameAsPlayerTwo(Game $game): self
+    {
+        if ($this->gamesAsPlayerTwo->removeElement($game)) {
+            // set the owning side to null (unless already changed)
+            if ($game->getPlayerTwo() === $this) {
+                $game->setPlayerTwo(null);
             }
         }
 
@@ -283,32 +322,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Game>
+     * @return Collection<int, Tournament>
      */
-    public function getGames(): Collection
+    public function getTournaments(): Collection
     {
-        return $this->games;
+        return $this->tournaments;
     }
 
-    public function addGame(Game $game): self
+    public function addTournament(Tournament $tournament): self
     {
-        if (!$this->games->contains($game)) {
-            $this->games->add($game);
-            $game->setUser($this);
+        if (!$this->tournaments->contains($tournament)) {
+            $this->tournaments->add($tournament);
+            $tournament->addPlayer($this);
         }
 
         return $this;
     }
 
-    public function removeGame(Game $game): self
+    public function removeTournament(Tournament $tournament): self
     {
-        if ($this->games->removeElement($game)) {
-            // set the owning side to null (unless already changed)
-            if ($game->getUser() === $this) {
-                $game->setUser(null);
-            }
+        if ($this->tournaments->removeElement($tournament)) {
+            $tournament->removePlayer($this);
         }
 
         return $this;
     }
+    
 }

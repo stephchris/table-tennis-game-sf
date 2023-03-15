@@ -15,29 +15,26 @@ class TournamentFixtures extends Fixture implements DependentFixtureInterface
 
         $corsaire = new Tournament();
         $corsaire->setName('Tournoi des Corsaires');
-        $corsaire->setDateStart($today->modify('2023-03-06 18:30'));
+        $corsaire->setDateStart($today->modify('+1 day'));
         $corsaire->setType('mixte');
         $corsaire->setDescription('Venez vous affronter, que le meilleur corsaire gagne');
-        $corsaire->setPlayerNumber('12');
-        $corsaire->setTableNumber('6');
+        $corsaire->setPlayerNumber(12);
+        $corsaire->setTableNumber(6);
         $corsaire->setImage('corsaire_boat.jpg');
+        $corsaire->addPlayer($this->getReference('esteban-nicole'));
         $manager->persist($corsaire);
         $this->addReference('tournament-corsaire', $corsaire);
 
         $pirate = new Tournament();
         $pirate->setName('Tournoi des Pirates');
-        $pirate->setDateStart($today->modify('2023-06-15 20:00'));
+        $pirate->setDateStart($today->modify('-1 day'));
         $pirate->setType('homme');
         $pirate->setDescription('Venez vous affronter, que le meilleur pirate gagne');
-        $pirate->setPlayerNumber('12');
-        $pirate->setTableNumber('6');
+        $pirate->setPlayerNumber(12);
+        $pirate->setTableNumber(6);
         $pirate->setImage('pirate.jpg');
         $manager->persist($pirate);
         $this->addReference('tournament-pirate', $pirate);
-
-
-
-
 
         $manager->flush();
 
@@ -45,6 +42,6 @@ class TournamentFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return [GameFixtures::class];
+        return [GameFixtures::class, UserFixtures::class];
     }
 }

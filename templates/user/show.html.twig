@@ -3,56 +3,36 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-<div class="container mt-8 mr-96">
-    <h1 class="text-5xl py-24 px-12">{{ user.firstName }}{{ user.lastName }}</h1>
+    <div class="container mt-8 mr-96">
+    <h1 class="text-5xl py-24 px-12">{{ user.fullName }}</h1>
 
 
-    <div class=" rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-12 py-4">
-<div class="">
-    <table class="table px-24">
-        <tbody class="text-left w-screen">
+    <div class="max-w-xl  rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-12 py-4">
 
-            <tr>
-                <th>Prénom :</th>
-                <td>{{ user.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Nom :</th>
-                <td>{{ user.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Genre :</th>
-                <td>{{ user.gender }}</td>
-            </tr>
-            <tr>
-                <th>Date de Naissance :</th>
-                <td>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Classement :</th>
-                <td>{{ user.ranking }}</td>
-            </tr>
-            <tr>
-                <th>Adresse :</th>
-                <td>{{ user.address }}</td>
-            </tr>
-            <tr>
-                <th>Code Postal :</th>
-                <td>{{ user.zipcode }}</td>
-            </tr>
-            <tr>
-                <th>Ville :</th>
-                <td>{{ user.city }}</td>
-            </tr>
+<div class="grid grid-cols-3">
+        <img src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}" class="mx-auto mb-4 w-32 rounded-lg>">
+            <div>
+                <p>Prénom :</p>
+                <p>Nom :</p>
+                <p>Genre :</p>
+                <p>Date de Naissance :</p>
+                <p>Classement :</p>
+                <p>Adresse :</p>
+                <p>Code Postal :</p>
+                <p>Ville :</p>
+            </div>
 
+            <div>
+                <p>{{ user.firstName }}</p>
+                <p>{{ user.lastName }}</p>
+                <p>{{ user.gender }}</p>
+                <p>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</p>
+                <p>{{ user.ranking }}</p>
+                <p>{{ user.address }}</p>
+                <p>{{ user.zipcode }}</p>
+                <p>{{ user.city }}</p>
+            </div>
 
-
-        </tbody>
-    </table>
-
-        <img class="py-12" src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}">
-
-    </div>
         <button>
     <a href="{{ path('app_user_index') }}">Retour à la liste</a>
             </button>
@@ -63,4 +43,5 @@
     </div>
 </div>
     </div>
+
 {% endblock %}
