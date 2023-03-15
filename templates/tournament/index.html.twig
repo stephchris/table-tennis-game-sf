@@ -4,59 +4,63 @@
 
 {% block body %}
     <div class="pb-36 px-12">
-    <h1 class="text-5xl py-16">Tous les tournois</h1>
+        <h1 class="text-5xl py-16">Tous les tournois</h1>
 
-    <table class="my-8 bg-white">
-        <thead>
-            <tr class="text-lg">
-                <th>Nom du tournoi</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Type</th>
-                <th>Nombre de joueurs</th>
-                <th>Nombre de tables</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for tournament in tournaments %}
+        <div class=" bg-white">
+            <div class="grid grid-cols-4">
+                {% for tournament in tournaments %}
 
-            <tr class="text-sm font-normal">
-
-                <td>{{ tournament.name }}</td>
-                <td>{{ tournament.dateStart ? tournament.dateStart|date('d-m-Y H:i') : '' }}</td>
-                <td>{{ tournament.description }}</td>
-                <td>{{ tournament.type }}</td>
-                <td>
-                    {{ tournament.players|length }}
-                    /
-                    {{ tournament.playerNumber }}
-                </td>
-                <td>{{ tournament.tableNumber }}</td>
-
-                <td><img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}" class="object-scale-down h-48 w-96 rounded "></td>
+                    <div class="text-sm">
+                        <p>Nom du tournoi</p>
+                        <p>Date</p>
+                        <p>Description</p>
+                        <p>Type</p>
+                        <p>Nombre de joueurs</p>
+                        <p>Nombre de tables</p>
+                    </div>
 
 
-                <td>
-                    <button>
-                        <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
-                    <button>
-                        <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">Modifier</a></button>
-                    <button>
-                        <a href="{{ path('app_tournament_show', { 'id': tournament.id }) }}">Participer</a></button>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">Pas de tournois prévus</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    <div class="text-sm font-normal">
+
+                        <p>{{ tournament.name }}</p>
+                        <p>{{ tournament.dateStart ? tournament.dateStart|date('d-m-Y H:i') : '' }}</p>
+                        <p>{{ tournament.description }}</p>
+                        <p>{{ tournament.type }}</p>
+                        <p>
+                            {{ tournament.players|length }}
+                            /
+                            {{ tournament.playerNumber }}
+                        </p>
+                        <p>{{ tournament.tableNumber }}</p>
+                    </div>
+
+                    <div>
+                        <p><img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
+                                class="object-scale-down h-48 w-96 rounded "></p>
+                    </div>
+                    <div>
+
+                        <button>
+                            <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
+                        <button>
+                            <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">Modifier</a></button>
+                        <button>
+                            <a href="{{ path('app_tournament_show', { 'id': tournament.id }) }}">Participer</a></button>
+
+                    </div>
+
+                {% else %}
+
+                    <p colspan="10">Pas de tournois prévus</p>
+
+                {% endfor %}
 
 
-        <button>
-            <a href="{{ path('app_tournament_new') }}">Créer un tournoi</a>
-        </button>
+                <button>
+                    <a href="{{ path('app_tournament_new') }}">Créer un tournoi</a>
+                </button>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

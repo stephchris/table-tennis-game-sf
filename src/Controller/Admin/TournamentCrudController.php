@@ -22,7 +22,6 @@ class TournamentCrudController extends AbstractCrudController
 
             TextField::new('name'),
             TextField::new('dateStart'),
-            TextField::new('dateEnd'),
             TextField::new('type'),
             TextField::new('playerNumber'),
             TextField::new('tableNumber'),

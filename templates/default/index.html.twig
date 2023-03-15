@@ -6,54 +6,66 @@
 
 {#  <div class="bg-cover h-screen w-screen" style="background-image: url('{{ asset('uploads/bg_table_tennis.jpeg') }}');">#}
 
-    <div class="pb-36 px-12">
-        <div class="text-center text-sky-300 flex">
-                <img src= {{  asset('uploads/logo.jpg') }} ;" alt="logo du club" class="">
-                <div class="members border-sky-300 border-2 rounded-lg py-4 w-48">
+    <div class="py-12 px-12">
+        <div class="pl-16 py-4 mx-4 text-center flex">
+                <a href="https://www.cjf-upsm.com/"><img src= {{  asset('uploads/logo.jpg') }} ;" alt="logo du club" class=""></a>
+                <div class="members border-sky-300 border-2 rounded-lg py-4 w-48 mx-4">
                     <i class="fa-solid fa-user-group"></i>
                     <p><a href="{{ path('app_user_index') }}">XX Membres</a></p>
                 </div>
-                <div class="tournaments border-sky-300 border-2 rounded-lg py-4 w-48">
+                <div class="tournaments border-sky-300 border-2 rounded-lg py-4 w-48 mx-4">
                     <i class="fa-solid fa-trophy"></i>
                     <p><a href="{{ path('app_tournament_index') }}">XX Tournois</a></p>
                 </div>
-                <div class="ranking border-sky-300 border-2 rounded-lg py-4 w-48">
-                    <p>Classement</p>
+                <div class="ranking border-sky-300 border-2 rounded-lg py-4 w-48 mx-4">
+                    <i class="fa-solid fa-list-ol"></i>
+                    <p><a>Classement</a></p>
                 </div>
+
         </div>
     </div>
 
-    <div class="mt-24">
-        <div class="bg-contain bg-no-repeat h-48" style="background-image: url('{{ asset('uploads/calendar.png') }}');">
+    <div class="mt-12">
+        <div class="bg-contain bg-no-repeat h-48 opacity-50" style="background-image: url('{{ asset('uploads/calendar.png') }}');">
             <p class="text-right text-3xl font-bold pt-20 pr-48"><a href="{{ path('app_tournament_new') }}">Organiser un nouveau tournoi <i class="fa-sharp fa-solid fa-chevron-right"></i></a></p>
         </div>
     </div>
-
-    <h1 class="text-5xl">Prochains tournois</h1>
+<div class="py-6">
+    <h1 class="text-3xl bg-[#313485] py-2">Prochains tournois</h1>
+</div>
         <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-6 py-4">
             <div class="grid">
+                {% if tournamentsp is empty %}
+                <p>Aucun tournoi n'a été trouvé.</p>
+                {% else %}
+                <ul>
                 {% for tournament in tournamentsf %}
                     {% include 'tournament/_card.html.twig' with {'tournament': tournament} only %}
                 {% endfor %}
+                </ul>
+                {% endif %}
             </div>
         </div>
-
-    <h1 class="text-5xl">Tournois Passés</h1>
+    <div class="py-6">
+    <h1 class="text-3xl bg-[#313485] py-2">Tournois Passés</h1>
+    </div>
     <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-6 py-4">
         <div class="grid">
-            {# {% if tournaments is empty %}
+            {% if tournamentsp is empty %}
             <p>Aucun tournoi passé n'a été trouvé.</p>
-            {% else %} #}
+            {% else %}
             <ul>
             {% for tournament in tournamentsp %}
                 {% include 'tournament/_card.html.twig' with {'tournament': tournament} only %}
             {% endfor %}
             </ul>
-           {#{% endif %} #}
+           {% endif %}
         </div>
     </div>
-
-    <h1 class="text-5xl">Derniers joueurs inscrits</h1>
+    <div class="py-6">
+    <h1 class="text-3xl bg-[#313485] py-2">Derniers joueurs inscrits</h1>
+    </div>
+<div class="h-24">
 
 </div>
 

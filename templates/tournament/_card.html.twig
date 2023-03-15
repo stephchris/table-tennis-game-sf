@@ -1,7 +1,9 @@
 <article class="card">
-
-        <img src="{{ asset('uploads/' ~ tournament.image) }}" alt={{"tournament.name"}};" class="w-32">
-
+<div class="flex">
+    <div>
+        <img src="{{ asset('uploads/' ~ tournament.image) }}" alt={{"tournament.name"}};" class="mx-auto mb-4 w-32 rounded-lg>">
+    </div>
+    <div>
     <h3>{{ tournament.name }}</h3>
     <time datetime="{{ tournament.dateStart|date('d-m-Y h:i') }}">
         {{ tournament.dateStart|date('l jS \\o\\f F \\a\\t g:i a') }}
@@ -9,4 +11,6 @@
     <button>
     <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails et inscription <i class="fa-sharp fa-solid fa-chevron-right"></i></a>
     </button>
+    </div>
+</div>
 </article>

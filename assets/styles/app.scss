@@ -7,6 +7,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/regular.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
 
 
 html {
@@ -25,21 +26,19 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed+&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+&display=swap');
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, a, i, {
   font-family: 'Roboto Condensed', serif;
   @apply text-[#ccd65c]
 }
 
-p, th, td, ul, li {
+p, th, td, ul, li, i {
   font-family: 'Helvetica', serif;
   @apply text-[#313485]
 }
 
 
 a, i {
-
   font-family: 'Roboto', serif;
-  @apply text-[#ccd65c] text-2xl
 }
 
 button  {
