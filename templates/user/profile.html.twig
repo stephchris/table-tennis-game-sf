@@ -10,10 +10,14 @@
 
         {{ form_widget(form) }}
 
-        <button type="submit">Enregister</button>
+        <button class="button" type="submit">Enregister</button>
 
         {{ form_end(form) }}
 
+        <button class="button">
+            <a href="{{ path('homepage') }}">Retour</a>
+        </button>
+
     </div>
- </div>
+
 {% endblock %}

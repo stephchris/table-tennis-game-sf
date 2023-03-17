@@ -67,11 +67,11 @@
                     </div>
 
                     <div>
-                        <button>
+                        <button class="button">
                             <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a>
                         </button>
                         {% if app.user == user %}
-                            <button>
+                            <button class="button">
                                 <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                             </button>
                         {% endif %}
@@ -82,9 +82,9 @@
                     <p colspan="10">Pas de membres inscrits</p>
 
                 {% endfor %}
-                <button>
+                <button class="button">
                     <a href="{{ path('app_user_new') }}">Créer un membre</a>
-                </button>
+                </button class="button">
 
             </div>
         </div>

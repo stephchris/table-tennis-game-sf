@@ -6,61 +6,57 @@
     <div class="pb-36 px-12">
         <h1 class="text-5xl py-16">Tous les tournois</h1>
 
-        <div class=" bg-white">
-            <div class="grid grid-cols-4">
-                {% for tournament in tournaments %}
 
-                    <div class="text-sm">
-                        <p>Nom du tournoi</p>
-                        <p>Date</p>
-                        <p>Description</p>
-                        <p>Type</p>
-                        <p>Nombre de joueurs</p>
-                        <p>Nombre de tables</p>
-                    </div>
+        <div class="lg:grid grid-cols-3">
+            {% for tournament in tournaments %}
 
 
-                    <div class="text-sm font-normal">
+                <div>
+                    <p><img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
+                            class="object-scale-down h-48 w-96 rounded-lg "></p>
+                </div>
+                <div class="text-md font-normal">
 
-                        <p>{{ tournament.name }}</p>
-                        <p>{{ tournament.dateStart ? tournament.dateStart|date('d-m-Y H:i') : '' }}</p>
-                        <p>{{ tournament.description }}</p>
-                        <p>{{ tournament.type }}</p>
-                        <p>
-                            {{ tournament.players|length }}
-                            /
-                            {{ tournament.playerNumber }}
-                        </p>
-                        <p>{{ tournament.tableNumber }}</p>
-                    </div>
+                    <p>{{ tournament.name }}</p>
+                    <p>{{ tournament.dateStart ? tournament.dateStart|date('d-m-Y H:i') : '' }}</p>
+                    <p>{{ tournament.description }}</p>
+                    <p>{{ tournament.type }}</p>
+                    <p>Nombre de joueurs :
+                        {{ tournament.players|length }}
+                        /
+                        {{ tournament.playerNumber }}
+                    </p>
+                    <p>Nombre de table : {{ tournament.tableNumber }}</p>
+                </div>
 
-                    <div>
-                        <p><img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
-                                class="object-scale-down h-48 w-96 rounded "></p>
-                    </div>
-                    <div>
 
-                        <button>
-                            <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
-                        <button>
+                <div class="flex flex-col lg:justify-center lg:mt-12">
+
+                    <button class="button">
+                        <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
+
+                    <button class="button">
+                        <a href="{{ path('app_tournament_show', { 'id': tournament.id }) }}">Participer</a></button>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <button class="button">
                             <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">Modifier</a></button>
-                        <button>
-                            <a href="{{ path('app_tournament_show', { 'id': tournament.id }) }}">Participer</a></button>
+                    {% endif %}
+                </div>
 
-                    </div>
+            {% else %}
 
-                {% else %}
+                <p colspan="10">Pas de tournois prévus</p>
 
-                    <p colspan="10">Pas de tournois prévus</p>
+            {% endfor %}
 
-                {% endfor %}
-
-
-                <button>
+            {% if is_granted('ROLE_ADMIN') %}
+                <button class="button">
                     <a href="{{ path('app_tournament_new') }}">Créer un tournoi</a>
                 </button>
-            </div>
+            {% endif %}
         </div>
     </div>
+
 
 {% endblock %}

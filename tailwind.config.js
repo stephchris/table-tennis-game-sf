@@ -10,16 +10,21 @@ module.exports = {
   theme: {
     backgroundColor: theme => ({
       ...theme('colors'),
-      //'blue': '#011e98',
-      'lightblue': '#5875f1',
-      'bluesky': '#9cacef',
+      'blue': '#313485',
+      'yellow': '#ccd65c',
     }),
 
 
     extend: {
-      fontFamily: {
-        source: ["Source Sans Pro"],
+      colors: {
+        'blue': '#313485',
+        'yellow': '#ccd65c',
       },
+      fontFamily: {
+        source: ["Roboto"],
+      },
+
+
     },
   },
 

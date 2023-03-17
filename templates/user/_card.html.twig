@@ -3,7 +3,7 @@
     <img src="{{ asset('uploads/' ~ user.image) }}" alt={{"user.name"}}>
 
     <h3>{{ user.fullName}}</h3>
-    <p>{{ user.ranking}}</p>
+    <p>Classement : . ' ' . {{ user.ranking}}</p>
     <button>
         <a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-primary">Détails</a>
     </button>

@@ -16,41 +16,72 @@ html {
   text-decoration: none;
   list-style: none
 ;
-  @apply bg-[#313485]
+
 }
 body {
   min-height: 100vh;
 }
 
+
+nav {
+  @apply bg-blue
+}
+
+
+
+footer {
+  @apply bg-blue
+}
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Helvetica+&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed+&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+&display=swap');
 
-h1, h2, h3, h4, h5, h6, a, i, {
+h1, h2, h3, h4, h5, h6, a {
   font-family: 'Roboto Condensed', serif;
-  @apply text-[#ccd65c]
+  @apply text-yellow
 }
 
-p, th, td, ul, li, i {
+i {
+  @apply text-blue;
+}
+p, th, td, ul, li, label, input {
   font-family: 'Helvetica', serif;
-  @apply text-[#313485]
+  @apply text-blue
 }
 
 
 a, i {
   font-family: 'Roboto', serif;
+  @apply text-yellow
 }
 
-button  {
 
-  @apply bg-[#313485] rounded-full px-8 py-2 h-10 border-2 text-[#ccd65c] ;
+
+.button, .button_label  {
+  @apply rounded-lg px-8 py-2 mb-4 border-2 border-blue text-blue hover:bg-blue hover:text-yellow;
 }
 
 h1 {
-  @apply text-5xl py-16
+  @apply text-5xl py-16 font-bold
 }
 
 li {
   @apply pb-12
+}
+
+.text {
+  font-family: 'Helvetica', serif;
+  @apply text-blue
+}
+
+.zone {
+  @apply border-2 border-blue
+}
+
+.card {
+  @apply bg-gray-50  max-w-screen-xl rounded overflow-hidden shadow-lg lg:py-8 lg:ml-8 lg:px-6 lg:py-4
 }
 

@@ -26,7 +26,7 @@ class TournamentController extends AbstractController
 
 
     #[Route('/new', name: 'app_tournament_new', methods: ['GET', 'POST'])]
-
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, FileUploader $fileUploader, TournamentRepository $tournamentRepository): Response
     {
         $tournament = new Tournament();

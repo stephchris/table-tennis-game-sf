@@ -8,11 +8,11 @@
 
     {{ include('user/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-<button class="bg-blue rounded-full px-8 py-2 h-10 border-2 uppercase text-white">
+<button class="button">
     <a href="{{ path('app_user_index') }}">back to list</a></button>
 
     {{ include('user/_delete_form.html.twig') }}
  </div>
-    </div>
+
 
 {% endblock %}
