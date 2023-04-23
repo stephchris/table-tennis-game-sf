@@ -23,15 +23,13 @@ class RegistrationFormType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('gender')
-
-            ->add('birthDate', DateTimeType::class,  [
-            'date_widget' => 'single_text',
-            'placeholder' => [
-                'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-            ],
-        ])
+            ->add('birthDate', DateTimeType::class, [
+                'date_widget' => 'single_text',
+                'placeholder' => [
+                    'day' => 'Day', 'month' => 'Month', 'year' => 'Year',
+                ],
+            ])
             ->add('email')
-
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -75,8 +73,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez accepter les conditions',
                     ]),
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
