@@ -69,5 +69,4 @@ class UserFixtures extends Fixture
     }
 
 
-
 }

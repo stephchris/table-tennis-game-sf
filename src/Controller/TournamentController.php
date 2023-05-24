@@ -37,10 +37,10 @@ class TournamentController extends AbstractController
 
             /** @var UploadedFile $brochureFile */
             $brochureFile = $form->get('image')->getData();
-                if ($brochureFile) {
-                    $brochureFileName = $fileUploader->upload($brochureFile);
-                    $tournament->setImage($brochureFileName);
-                }
+            if ($brochureFile) {
+                $brochureFileName = $fileUploader->upload($brochureFile);
+                $tournament->setImage($brochureFileName);
+            }
             $tournamentRepository->save($tournament, true);
 
             return $this->redirectToRoute('app_tournament_index', [], Response::HTTP_SEE_OTHER);
@@ -95,18 +95,17 @@ class TournamentController extends AbstractController
         ]);
     }
 
+
     #[Route('/{id}', name: 'app_tournament_delete', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Tournament $tournament, TournamentRepository $tournamentRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$tournament->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $tournament->getId(), $request->request->get('_token'))) {
             $tournamentRepository->remove($tournament, true);
         }
 
         return $this->redirectToRoute('app_tournament_index', [], Response::HTTP_SEE_OTHER);
     }
-
-
 
 
 }

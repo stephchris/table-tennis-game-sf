@@ -47,8 +47,7 @@ class TournamentRepository extends ServiceEntityRepository
             ->orderBy('tournament.dateStart', 'ASC')
             ->setParameter(':today', new \DateTime())
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     public function findFuture(int $limit = 4): array
@@ -60,8 +59,7 @@ class TournamentRepository extends ServiceEntityRepository
             ->setMaxResults($limit)
             ->setParameter(':today', new \DateTime())
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     public function findPast(int $limit = 1): array
@@ -72,8 +70,7 @@ class TournamentRepository extends ServiceEntityRepository
             ->setMaxResults($limit)
             ->setParameter(':today', new \DateTime())
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     public function findUserInTournament(): array
@@ -83,9 +80,27 @@ class TournamentRepository extends ServiceEntityRepository
             ->join('tournament.user', 'user')
             ->orderBy('user.firstName', 'ASC')
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    /**
 //     * @return Tournament[] Returns an array of Tournament objects

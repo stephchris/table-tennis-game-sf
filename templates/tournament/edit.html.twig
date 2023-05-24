@@ -4,14 +4,14 @@
 
 {% block body %}
     <div class="pb-36 px-12">
-    <h1 class="text-5xl py-16">Modifier le tournoi</h1>
+        <h1 class="text-5xl py-16">Modifier le tournoi</h1>
 
-    {{ include('tournament/_form.html.twig', {'button_label': 'Valider'}) }}
+        {{ include('tournament/_form.html.twig', {'button_label': 'Valider'}) }}
 
         <button class="button">
-        <a href="{{ path('app_tournament_index') }}">Retour à la liste</a></button>
+            <a href="{{ path('app_tournament_index') }}">Retour à la liste</a></button>
 
-    {{ include('tournament/_delete_form.html.twig') }}
+        {{ include('tournament/_delete_form.html.twig') }}
 
     </div>
 

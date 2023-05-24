@@ -20,9 +20,6 @@ module.exports = {
         'blue': '#313485',
         'yellow': '#ccd65c',
       },
-      fontFamily: {
-        source: ["Roboto"],
-      },
 
 
     },

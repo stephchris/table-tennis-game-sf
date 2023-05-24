@@ -24,38 +24,38 @@ class UserType extends AbstractType
         $builder
             ->add('firstName', TextType::class, [
                 'label' => 'Prénom',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
-                'attr'=>[
-                    'class'=>'zone'
+                'attr' => [
+                    'class' => 'zone'
                 ],
                 'required' => true,
             ])
             ->add('lastName', TextType::class, [
                 'label' => 'Nom',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
-                'attr'=>[
-                    'class'=>'zone'
+                'attr' => [
+                    'class' => 'zone'
                 ],
                 'required' => true,
             ])
             ->add('gender', TextType::class, [
                 'label' => 'Genre',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
-                'attr'=>[
-                    'class'=>'zone'
+                'attr' => [
+                    'class' => 'zone'
                 ],
                 'required' => true,
             ])
-            ->add('birthDate', DateType::class,  [
+            ->add('birthDate', DateType::class, [
                 'label' => 'Date de naissance',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
                 'widget' => 'single_text',
 
@@ -63,45 +63,45 @@ class UserType extends AbstractType
             ])
             ->add('address', TextType::class, [
                 'label' => 'Rue',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
-                'attr'=>[
-                    'class'=>'zone'
+                'attr' => [
+                    'class' => 'zone'
                 ],
             ])
             ->add('zipcode', TextType::class, [
                 'label' => 'Code postal',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
-                'attr'=>[
-                    'class'=>'zone'
+                'attr' => [
+                    'class' => 'zone'
                 ],
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
-                'attr'=>[
-                    'class'=>'zone'
+                'attr' => [
+                    'class' => 'zone'
                 ],
             ])
             ->add('ranking', TextType::class, [
                 'label' => 'Classement',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
-                'attr'=>[
-                    'class'=>'zone'
+                'attr' => [
+                    'class' => 'zone'
                 ],
                 'required' => true,
             ])
             ->add('image', FileType::class, [
                 'label' => 'Photo de profil',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
                 'attr' => ['accept' => 'image/*'],
                 'mapped' => false,
@@ -119,26 +119,26 @@ class UserType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid image',
                     ])
                 ]])
-            ->add('email',TextType::class, [
+            ->add('email', TextType::class, [
                 'label' => 'Email',
-                'label_attr' =>[
-                        'class'=>'text'
-                 ],
-                'attr'=>[
-                    'class'=>'zone'
+                'label_attr' => [
+                    'class' => 'text'
+                ],
+                'attr' => [
+                    'class' => 'zone'
                 ],
             ])
-            ->add('plainPassword',  RepeatedType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options'  => ['label' => 'Mot de passe', 'hash_property_path' => 'password'],
+                'first_options' => ['label' => 'Mot de passe', 'hash_property_path' => 'password'],
                 'second_options' => ['label' => 'Confirmer le mot de passe',
-                    'attr'=>[
-                    'class'=>'zone'
-                ],
+                    'attr' => [
+                        'class' => 'zone'
                     ],
+                ],
                 'label' => 'Mot de passe',
-                'label_attr' =>[
-                    'class'=>'text'
+                'label_attr' => [
+                    'class' => 'text'
                 ],
 
                 'mapped' => false,
@@ -164,9 +164,7 @@ class UserType extends AbstractType
                         'message' => 'Veuillez accepter les conditions',
                     ]),
                 ],
-            ])
-
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
+
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -19,13 +20,11 @@
 
 </head>
 <body>
-
-
 <nav class=" text-xl h-48  px-12 grid grid-cols-2">
 
-        <a href="{{ path('homepage') }}">
-            <img src="{{ asset('uploads/logoTTG.png') }}" alt="logo du site" class="pl-8>">
-        </a>
+    <a href="{{ path('homepage') }}">
+        <img src="{{ asset('uploads/logoTTG.png') }}" alt="logo du site" class="pl-8 hover:translate-x-4>">
+    </a>
 
 
     <div>
@@ -35,20 +34,22 @@
 
             {% if app.user %}
             <img src="{{ asset('uploads/' ~ app.user.image) }}" class="w-24 h-24 rounded-full" alt="Avatar"/>
+            {#  <img class="h-auto max-w-xl rounded-lg shadow-xl dark:shadow-gray-800" src="/docs/images/examples/image-2@2x.jpg" alt="image description"> #}
+
             <h5 class="mb-2 text-xl font-medium">
                 {{ "Bonjour " ~ app.user.fullName }}
             </h5>
             <div class="flex">
                 <div>
-                            <div>
-                                <a href="{{ path('app_user_profile') }}">Votre profil</a>
-                            </div>
-                            <div>
-                                <a href="{{ path('app_logout') }}" class="text-sm">Déconnexion</a>
-                            </div>
+                    <div>
+                        <a href="{{ path('app_user_profile') }}" class="text-yellow">Votre profil</a>
+                    </div>
+                    <div>
+                        <a href="{{ path('app_logout') }}" class="text-sm text-yellow justify-end">Déconnexion</a>
+                    </div>
                     {% else %}
-                        <a href="{{ path('app_login') }}">Connexion</a>
-                        <a href="{{ path('app_register') }}" class="text-sm">S'inscrire</a>
+                        <a href="{{ path('app_login') }}" class="text-yellow">Connexion</a>
+                        <a href="{{ path('app_register') }}" class="text-sm text-yellow">S'inscrire</a>
                     {% endif %}
                 </div>
             </div>
@@ -56,22 +57,22 @@
 
     </div>
     <div class="cursor-pointer pl-8 lg:hidden">
-        <i class="fa-solid fa-bars"></i>
+        <i class="fa-solid fa-bars text-blue"></i>
     </div>
 </nav>
 
 
-<div class="lg:flex bg-white">
-    <nav class="pl-6 md:w-64 ">
+<div class="lg:flex">
+    <nav class="lg:w-64 bg-white">
         <div class="hidden space-x-8 lg:flex">
             {#  <div class="flex justify-between"> #}
             <div class="text-3xl font-bold">
-                <ul class="px-12 pt-8">
-                    <li></li>
-                    <li><a href="{{ path('app_tournament_index') }}"><i class="fa-solid fa-trophy"></i>Tournois</a></li>
-                    <li><a href="{{ path('app_user_index') }}"><i class="fa-solid fa-user-group"></i>Membres</a></li>
-                    <li><a><i class="fa-solid fa-list-ol"></i>Classement</a></li>
-                    <li><a href="{{ path('app_game') }}">((Matchs))</a></li>
+                <ul class="pt-8 pl-4">
+                    <li><a href="{{ path('app_tournament_index') }}"><i class="fa-solid fa-trophy text-blue"></i>Tournois</a>
+                    </li>
+                    <li><a href="{{ path('app_user_index') }}"><i
+                                    class="fa-solid fa-user-group text-blue"></i>Membres</a></li>
+                    <li><a><i class="fa-solid fa-list-ol text-blue"></i>Classement</a></li>
                 </ul>
             </div>
         </div>
@@ -79,7 +80,7 @@
     </nav>
 
 
-    <main class="px-8">
+    <main>
 
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -96,9 +97,9 @@
     </main>
 </div>
 
-<footer class=" ">
-    <a href="https://instagram.com/cjf_saint_malo_tt?igshid=YmMyMTA2M2Y="><i class="fa-brands fa-instagram"></i></a>
-    <p class="text-right text-white">Table Tennis Game &copy; 2023</p>
+<footer class="mt-24">
+    <a href="https://instagram.com/cjf_saint_malo_tt?igshid=YmMyMTA2M2Y="><i class=" insta fa-brands fa-instagram pl-12 pt-4"></i></a>
+    <p class="text-right text-yellow pr-12">Table Tennis Game © 2023</p>
 </footer>
 
 </body>

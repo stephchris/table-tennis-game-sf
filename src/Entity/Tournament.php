@@ -98,7 +98,6 @@ class Tournament
     }
 
 
-
     public function getType(): ?string
     {
         return $this->type;
@@ -158,7 +157,6 @@ class Tournament
 
         return $this;
     }
-
 
 
     /**

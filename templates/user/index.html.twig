@@ -36,19 +36,9 @@
 
         <div class="bg-white">
 
-            <div class="grid grid-cols-4">
+            <div class="grid grid-cols-3">
                 {% for user in users %}
-                <div class="text-lg font-normal">
 
-                    <p>Prénom</p>
-                    <p>Nom</p>
-                    <p>Genre</p>
-                    <p>Date de naissance</p>
-                    <p>Classement</p>
-                    <p>Adresse</p>
-                    <p>Code postal</p>
-                    <p>Ville</p>
-                </div>
 
 
                     <div class="text-sm font-normal">
@@ -56,7 +46,7 @@
                         <p>{{ user.lastName }}</p>
                         <p>{{ user.gender }}</p>
                         <p>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</p>
-                        <p>{{ user.ranking }}</p>
+                        <p>Classement : {{ user.ranking }}</p>
                         <p>{{ user.address }}</p>
                         <p>{{ user.zipcode }}</p>
                         <p>{{ user.city }}</p>
@@ -82,10 +72,12 @@
                     <p colspan="10">Pas de membres inscrits</p>
 
                 {% endfor %}
-                <button class="button">
-                    <a href="{{ path('app_user_new') }}">Créer un membre</a>
-                </button class="button">
 
+                {% if is_granted('ROLE_ADMIN') %}
+                    <button class="button">
+                        <a href="{{ path('app_user_new') }}">Créer un membre</a>
+                    </button>
+                {% endif %}
             </div>
         </div>
     </div>

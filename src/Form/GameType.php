@@ -15,8 +15,7 @@ class GameType extends AbstractType
             ->add('roundNumber')
             ->add('tableNumber')
             ->add('scorePlayerOne')
-            ->add('scorePlayerTwo')
-        ;
+            ->add('scorePlayerTwo');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

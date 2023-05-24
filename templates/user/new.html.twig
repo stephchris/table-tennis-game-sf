@@ -5,13 +5,13 @@
 {% block body %}
     <div class="container mt-8 mr-96">
         <h1 class="text-5xl py-16">Créer un nouvel utilisateur</h1>
-<div class="form">
-    {{ include('user/_form.html.twig') }}
+        <div class="form">
+            {{ include('user/_form.html.twig') }}
 
-        <button class="button">
-    <a href="{{ path('app_user_index') }}">Retour à la liste</a>
-        </button>
-    </div>
+            <button class="button">
+                <a href="{{ path('app_user_index') }}">Retour à la liste</a>
+            </button>
+        </div>
     </div>
 
 {% endblock %}

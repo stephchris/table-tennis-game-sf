@@ -5,18 +5,13 @@
 {% block body %}
     <div class="pb-36 px-12">
         <h1 class="text-5xl py-16">Tous les tournois</h1>
-
-
         <div class="lg:grid grid-cols-3">
             {% for tournament in tournaments %}
-
-
                 <div>
                     <p><img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
                             class="object-scale-down h-48 w-96 rounded-lg "></p>
                 </div>
                 <div class="text-md font-normal">
-
                     <p>{{ tournament.name }}</p>
                     <p>{{ tournament.dateStart ? tournament.dateStart|date('d-m-Y H:i') : '' }}</p>
                     <p>{{ tournament.description }}</p>
@@ -60,3 +55,20 @@
 
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

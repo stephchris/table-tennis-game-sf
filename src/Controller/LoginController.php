@@ -23,7 +23,8 @@ class LoginController extends AbstractController
             'last_username' => $lastUsername,
 
         ]);
-    }
+
+}
 
 
 }
