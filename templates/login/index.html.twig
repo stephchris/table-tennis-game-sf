@@ -8,7 +8,7 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <div class="container mt-8 mr-96">
+    <div class="container mt-8 ml-12 mr-96">
         <h1 class="text-5xl py-16">Connexion</h1>
         <div class="flex">
 
@@ -23,11 +23,11 @@
         <input type="hidden" name="_target_path" value="/account"> #}
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                 <br>
-                <button class="button" type="submit">Connexion</button>
+                <button class="button ml-48" type="submit">Connexion</button>
             </form>
 
         </div>
-        <div class="ml-6">
+        <div class="ml-48">
             <a href="{{ path('app_register') }}" class="text-sm">Pas encore de compte ?</a>
         </div>
     </div>
