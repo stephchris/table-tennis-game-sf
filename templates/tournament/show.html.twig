@@ -32,6 +32,8 @@
                                 Se désinscrire
                             </a>
                         </button>
+                        </div>
+                        <div>
                     {% elseif (tournament.availablePlayerNumber > 0) %}
                         <button class="button">
                             <a href="{{ path('app_tournament_participate', {'id': tournament.id}) }}">
@@ -42,7 +44,7 @@
                     {% endif %}
                     <div>
                         <button class="button">
-                            <a href="{{ path('app_tournament_index') }}">Retour à la liste</a>
+                            <a class="mt-2" href="{{ path('app_tournament_index') }}">Retour à la liste</a>
                         </button>
                     </div>
 
@@ -57,10 +59,10 @@
                     <p>{{ tournament.type }}</p>
                     <p>Nombre de joueurs : {{ tournament.playerNumber }}</p>
                     <p>Nombre de tables : {{ tournament.tableNumber }}</p>
-                    <p>Participants :
-                    <ul class="pl-24">
+                    <p>Liste des Participants :
+                    <ul class="pl-48">
                         {% for player in tournament.players %}
-                            <li>
+                            <li class="pb-1">
                                 {{ player.fullName }}
                             </li>
                         {% endfor %}

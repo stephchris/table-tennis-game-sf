@@ -20,7 +20,7 @@
 
 </head>
 <body>
-<nav class=" text-xl h-48  px-12 grid grid-cols-2">
+<nav class=" text-xl h-48  px-12 grid grid-cols-2 h-52">
 
     <a href="{{ path('homepage') }}">
         <img src="{{ asset('uploads/logoTTG.png') }}" alt="logo du site" class="pl-8 hover:translate-x-4>">
@@ -45,10 +45,10 @@
                         <a href="{{ path('app_user_profile') }}" class="text-yellow">Votre profil</a>
                     </div>
                     <div>
-                        <a href="{{ path('app_logout') }}" class="text-sm text-yellow justify-end">Déconnexion</a>
+                        <a href="{{ path('app_logout') }}" class="text-sm text-yellow justify-end pl-4">Déconnexion</a>
                     </div>
                     {% else %}
-                        <a href="{{ path('app_login') }}" class="text-yellow">Connexion</a>
+                        <a href="{{ path('app_login') }}" class="text-yellow pt-8">Connexion</a>
                         <a href="{{ path('app_register') }}" class="text-sm text-yellow">S'inscrire</a>
                     {% endif %}
                 </div>

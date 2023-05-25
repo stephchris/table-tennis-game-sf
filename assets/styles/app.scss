@@ -32,16 +32,16 @@ nav, footer {
 }
 
 
-h1, h2, h3, h4, h5, h6, a {
+h1, h2, h4, h5, h6, a {
   font-family: 'Roboto', serif;
   @apply text-yellow
 }
 
-i {
+i, time, h3, ul, li {
   @apply text-blue pr-2
 }
 
-th, td, ul, li {
+th, td {
   font-family: 'Helvetica', serif;
   @apply text-blue hover:text-yellow
 }
