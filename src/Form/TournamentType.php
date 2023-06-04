@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Tournament;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -48,15 +49,16 @@ class TournamentType extends AbstractType
                     'class' => 'zone'
                 ]
             ])
-            ->add('type', TextType::class, [
+            ->add('type', ChoiceType::class, [
                 'label' => 'Genre',
-                'label_attr' => [
-                    'class' => 'text'
+                'choices'  => [
+                    'Femme' => 'femme',
+                    'Homme' => 'homme',
+                    'Mixte' => 'mixte',
                 ],
-                'attr' => [
-                    'class' => 'zone'
-                ]
+                'placeholder' => 'Sélectionner un genre',
             ])
+
             ->add('playerNumber', NumberType::class, [
                 'label' => 'Nombre de joueurs',
                 'label_attr' => [

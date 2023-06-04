@@ -82,7 +82,6 @@ class TournamentController extends AbstractController
     {
         $form = $this->createForm(TournamentType::class, $tournament);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $tournamentRepository->save($tournament, true);
 

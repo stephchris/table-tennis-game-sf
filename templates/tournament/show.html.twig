@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="container mt-8 mr-96">
+<div class="container mt-8 pl-36">
     <h1 class="text-5xl py-16 px-8">{{ tournament.name }}</h1>
 
     <div class="text-3xl lg:mx-0 ">
@@ -12,7 +12,7 @@
             <div class="lg:grid grid-cols-2">
                 <div>
                     <img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
-                         class="h-96 flex-1 object-contain">
+                         class="h-96 flex-1 object-contain pb-4">
 
                     {% if is_granted('ROLE_ADMIN') %}
                         <button class="button mr-4 mt-4">
