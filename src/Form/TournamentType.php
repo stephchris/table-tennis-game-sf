@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +20,10 @@ class TournamentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $choices = [];
+        for ($i = 1; $i <= 100; $i++) {
+            $choices[$i] = $i;
+        }
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom du tournoi',
@@ -40,7 +45,7 @@ class TournamentType extends AbstractType
                     'class' => 'zone'
                 ]
             ])
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'label_attr' => [
                     'class' => 'text'
@@ -51,32 +56,35 @@ class TournamentType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'label' => 'Genre',
+                'placeholder' => 'Sélectionner un genre',
                 'choices'  => [
                     'Femme' => 'femme',
                     'Homme' => 'homme',
                     'Mixte' => 'mixte',
                 ],
-                'placeholder' => 'Sélectionner un genre',
+                'attr' => [
+                    'class' => 'zone'
+                ]
             ])
 
-            ->add('playerNumber', NumberType::class, [
+
+            ->add('playerNumber', ChoiceType::class,array (
                 'label' => 'Nombre de joueurs',
-                'label_attr' => [
-                    'class' => 'text'
-                ],
                 'attr' => [
                     'class' => 'zone'
-                ]
-            ])
-            ->add('tableNumber', NumberType::class, [
+                ],
+                'choices' => $choices
+
+            ))
+
+
+            ->add('tableNumber', ChoiceType::class, array(
                 'label' => 'Nombre de tables',
-                'label_attr' => [
-                    'class' => 'text'
-                ],
                 'attr' => [
                     'class' => 'zone'
-                ]
-            ])
+                ],
+                'choices' => $choices
+            ))
             ->add('image', FileType::class, [
                 'label' => 'Illustration',
                 'label_attr' => [
