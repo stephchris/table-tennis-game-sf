@@ -28,30 +28,30 @@ class TournamentType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom du tournoi',
                 'label_attr' => [
-                    'class' => 'text'
+                    'class' => 'block text'
                 ],
                 'attr' => [
-                    'class' => 'zone'
+                    'class' => 'zone mt-1 mb-4'
                 ]
             ])
             ->add('dateStart', DateTimeType::class, [
                 'label' => 'Date et heure',
 
                 'label_attr' => [
-                    'class' => 'text'
+                    'class' => 'block text'
                 ],
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'zone'
+                    'class' => 'zone mt-1 mb-4'
                 ]
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'label_attr' => [
-                    'class' => 'text'
+                    'class' => 'block text'
                 ],
                 'attr' => [
-                    'class' => 'zone'
+                    'class' => 'zone mt-1 mb-4'
                 ]
             ])
             ->add('type', ChoiceType::class, [
@@ -63,7 +63,7 @@ class TournamentType extends AbstractType
                     'Mixte' => 'mixte',
                 ],
                 'attr' => [
-                    'class' => 'zone'
+                    'class' => 'zone mt-1 mb-4'
                 ]
             ])
 
@@ -71,7 +71,7 @@ class TournamentType extends AbstractType
             ->add('playerNumber', ChoiceType::class,array (
                 'label' => 'Nombre de joueurs',
                 'attr' => [
-                    'class' => 'zone'
+                    'class' => 'zone mt-1 mb-4'
                 ],
                 'choices' => $choices
 
@@ -81,7 +81,7 @@ class TournamentType extends AbstractType
             ->add('tableNumber', ChoiceType::class, array(
                 'label' => 'Nombre de tables',
                 'attr' => [
-                    'class' => 'zone'
+                    'class' => 'zone mt-1 mb-4'
                 ],
                 'choices' => $choices
             ))
