@@ -28,7 +28,7 @@ class TournamentType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom du tournoi',
                 'label_attr' => [
-                    'class' => 'block text'
+                    'class' => 'block text font-bold'
                 ],
                 'attr' => [
                     'class' => 'zone mt-1 mb-4'
@@ -38,17 +38,17 @@ class TournamentType extends AbstractType
                 'label' => 'Date et heure',
 
                 'label_attr' => [
-                    'class' => 'block text'
+                    'class' => 'block text font-bold'
                 ],
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'zone mt-1 mb-4'
+                    'class' => 'zone mt-1 mb-4 text-blue'
                 ]
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'label_attr' => [
-                    'class' => 'block text'
+                    'class' => 'block text font-bold'
                 ],
                 'attr' => [
                     'class' => 'zone mt-1 mb-4'
@@ -56,6 +56,9 @@ class TournamentType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'label' => 'Genre',
+                'label_attr' => [
+                    'class' => 'block text font-bold'
+                ],
                 'placeholder' => 'Sélectionner un genre',
                 'choices'  => [
                     'Femme' => 'femme',
@@ -63,13 +66,16 @@ class TournamentType extends AbstractType
                     'Mixte' => 'mixte',
                 ],
                 'attr' => [
-                    'class' => 'zone mt-1 mb-4'
+                    'class' => 'zone mt-1 mb-4 text-blue'
                 ]
             ])
 
 
             ->add('playerNumber', ChoiceType::class,array (
                 'label' => 'Nombre de joueurs',
+                'label_attr' => [
+                    'class' => 'block text font-bold'
+                ],
                 'attr' => [
                     'class' => 'zone mt-1 mb-4'
                 ],
@@ -80,6 +86,9 @@ class TournamentType extends AbstractType
 
             ->add('tableNumber', ChoiceType::class, array(
                 'label' => 'Nombre de tables',
+                'label_attr' => [
+                    'class' => 'block text font-bold'
+                ],
                 'attr' => [
                     'class' => 'zone mt-1 mb-4'
                 ],
@@ -88,7 +97,7 @@ class TournamentType extends AbstractType
             ->add('image', FileType::class, [
                 'label' => 'Illustration',
                 'label_attr' => [
-                    'class' => 'text'
+                    'class' => 'text font-bold'
                 ],
 
                 'mapped' => false,
