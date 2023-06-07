@@ -33,9 +33,12 @@
             {# si l'utilisateur est connecté #}
 
             {% if app.user %}
+            {% if app.user %}
             <img src="{{ asset('uploads/' ~ app.user.image) }}" class="w-24 h-24 rounded-full" alt="Avatar"/>
             {#  <img class="h-auto max-w-xl rounded-lg shadow-xl dark:shadow-gray-800" src="/docs/images/examples/image-2@2x.jpg" alt="image description"> #}
-
+            {% else %}
+            <img src="C:\wamp64\www\patinoire\table-tennis-game-sf\public\uploads\avatar.png" class="w-24 h-24 rounded-full" />
+            {% endif %}
             <h5 class="mb-2 text-xl font-medium">
                 {{ "Bonjour " ~ app.user.fullName }}
             </h5>
@@ -56,7 +59,7 @@
         </div>
 
     </div>
-    <div class="cursor-pointer pl-8 lg:hidden">
+    <div class="cursor-pointer pl-8 mt-8 lg:hidden">
         <i class="fa-solid fa-bars text-blue"></i>
     </div>
 </nav>

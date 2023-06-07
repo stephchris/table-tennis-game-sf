@@ -69,7 +69,7 @@ li {
 }
 
 .zone {
-  @apply border-2 border-blue
+  @apply border-2 border-blue w-96 h-8 text-blue
 }
 
 .card {
@@ -79,4 +79,5 @@ li {
 .insta {
   @apply text-yellow hover:text-xl
 }
+
 

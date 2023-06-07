@@ -18,6 +18,12 @@ class LoginController extends AbstractController
 
         //récupérer  le dernier email saisi
         $lastUsername = $authenticationUtils->getLastUsername();
+
+        if ($error) {
+            // Ajouter un message flash d'erreur
+            $this->addFlash('error', 'Identifiants invalides.');
+        }
+
         return $this->render('login/index.html.twig', [
             'error' => $error,
             'last_username' => $lastUsername,

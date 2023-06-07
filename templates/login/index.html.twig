@@ -4,12 +4,18 @@
 
 {% block body %}
 
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% if app.flashes('error') %}
+        <div class="alert alert-danger text-red-500">
+            {{ app.flashes('error')[0] }}
+        </div>
     {% endif %}
+
 
     <div class="container mt-8 ml-12 mr-96">
         <h1 class="text-5xl py-16">Connexion</h1>
+
+
+
         <div class="flex">
 
             <form action="{{ path('app_login') }}" method="post">
@@ -30,6 +36,11 @@
         <div class="ml-48">
             <a href="{{ path('app_register') }}" class="text-sm">Pas encore de compte ?</a>
         </div>
+
+        <div class="ml-48">
+            <a href="" class="text-sm">Mot de passe oublié ?</a>
+        </div>
+
     </div>
 
 {% endblock %}
