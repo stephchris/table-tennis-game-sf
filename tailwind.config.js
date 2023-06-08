@@ -20,7 +20,9 @@ module.exports = {
         'blue': '#313485',
         'yellow': '#ccd65c',
       },
-
+      blur: {
+        xs: '3px',
+      }
 
     },
   },

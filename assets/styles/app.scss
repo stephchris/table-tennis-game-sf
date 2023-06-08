@@ -43,7 +43,7 @@ i, time, h3, ul, li {
 
 th, td {
   font-family: 'Helvetica', serif;
-  @apply text-blue hover:text-yellow
+  @apply text-blue hover:text-yellow min-w-full min-h-full
 }
 
 p, label, input{
@@ -62,6 +62,8 @@ h1 {
 li {
   @apply pb-12
 }
+
+
 
 .text {
   font-family: 'Helvetica', serif;

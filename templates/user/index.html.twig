@@ -7,7 +7,7 @@
     <div class="pb-36 px-12">
         <h1 class="text-5xl py-16">Liste des membres</h1>
 
-        <div class="flex">
+        <div class="flex ml-8">
             <div class="mb-3 xl:w-96">
                 <div class="relative mb-4 flex">
                     <input
@@ -32,57 +32,58 @@
       </span>
                 </div>
             </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <button class="button ml-96 mb-12">
+                    <a href="{{ path('app_user_new') }}">Créer un membre</a>
+                </button>
+            {% endif %}
         </div>
 
-        <div class="bg-white">
+        <table class="border-collapse border border-slate-900 ml-8">
+            {% for user in users %}
 
-            <div class="grid grid-cols-3">
-                {% for user in users %}
+            <tbody>
+                <tr>
+                    <td class="border border-slate-300">{{ user.firstName }}</td>
+                    <td class="border border-slate-300">{{ user.lastName }}</td>
+                    <td class="border border-slate-300">{{ user.gender }}</td>
+                    <td class="border border-slate-300 w-24">{{ user.birthDate ? user.birthDate|date('d-m-Y') : '' }}</td>
+                    <td class="border border-slate-300">{{ user.ranking }}</td>
+                    <td class="border border-slate-300 w-48">{{ user.address }}</td>
+                    <td class="border border-slate-300">{{ user.zipcode }}</td>
+                    <td class="border border-slate-300">{{ user.city }}</td>
 
+                    <td class="border border-slate-300">
+                            <img src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}"
+                                 class="max-h-fit w-32 rounded-lg>">
+                        </td>
 
-
-                    <div class="text-sm font-normal">
-                        <p>{{ user.firstName }}</p>
-                        <p>{{ user.lastName }}</p>
-                        <p>{{ user.gender }}</p>
-                        <p>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</p>
-                        <p>Classement : {{ user.ranking }}</p>
-                        <p>{{ user.address }}</p>
-                        <p>{{ user.zipcode }}</p>
-                        <p>{{ user.city }}</p>
-                    </div>
-                    <div>
-                        <img src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}"
-                             class="mx-auto mb-4 w-32 rounded-lg>">
-                    </div>
-
-                    <div>
+                    <td>
                         <button class="button">
-                            <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a>
+                        <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a>
                         </button>
-                        {% if app.user == user %}
-                            <button class="button">
-                                <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-                            </button>
-                        {% endif %}
-                    </div>
+                    </td>
+                    {% if app.user == user %}
+                    <td>
+                        <button class="button">
+                            <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                        </button>
+                    </td>
+                    {% endif %}
 
-                {% else %}
 
-                    <p colspan="10">Pas de membres inscrits</p>
+            {% else %}
 
-                {% endfor %}
+                <p colspan="10">Pas de membres inscrits</p>
 
-                {% if is_granted('ROLE_ADMIN') %}
-                    <button class="button">
-                        <a href="{{ path('app_user_new') }}">Créer un membre</a>
-                    </button>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+            {% endfor %}
+                </tr>
+            </tbody>
+        </table>
 
 
 
 
-{% endblock %}
+
+        {% endblock %}
+
