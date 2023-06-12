@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="container mt-8 pl-36">
+<div class="mt-8">
     <h1 class="text-5xl py-16 px-8">{{ tournament.name }}</h1>
 
     <div class="text-3xl lg:mx-0 ">
@@ -12,7 +12,27 @@
             <div class="lg:grid grid-cols-2">
                 <div>
                     <img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
-                         class="h-96 flex-1 object-contain pb-4">
+                         class="object-contain h-48 w-96 flex-1 pb-4">
+
+                    <div class="font-normal">
+                        <p>{{ tournament.description }}</p>
+                        <p>
+                            {{ tournament.dateStart|date('d/m/Y H:i') }}</p>
+
+                        <p>{{ tournament.type }}</p>
+                        <p>Nombre de joueurs : {{ tournament.playerNumber }}</p>
+                        <p>Nombre de tables : {{ tournament.tableNumber }}</p>
+                        <p>Liste des Participants :
+                        <ul class="pl-48">
+                            {% for player in tournament.players %}
+                                <li class="pb-1">
+                                    {{ player.fullName }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        </p>
+
+                    </div>
 
                     {% if is_granted('ROLE_ADMIN') %}
                         <button class="button mr-4 mt-4">
@@ -51,25 +71,7 @@
 
                 </div>
 
-                <div class="font-normal">
-                    <p>{{ tournament.description }}</p>
-                    <p>
-                        {{ tournament.dateStart|date('l jS \\o\\f F \\a\\t g:i a') }}</p>
 
-                    <p>{{ tournament.type }}</p>
-                    <p>Nombre de joueurs : {{ tournament.playerNumber }}</p>
-                    <p>Nombre de tables : {{ tournament.tableNumber }}</p>
-                    <p>Liste des Participants :
-                    <ul class="pl-48">
-                        {% for player in tournament.players %}
-                            <li class="pb-1">
-                                {{ player.fullName }}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    </p>
-
-                </div>
             </div>
         </div>
 

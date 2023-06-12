@@ -59,13 +59,13 @@
                         </td>
 
                     <td>
-                        <button class="button">
+                        <button class="button ml-2">
                         <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a>
                         </button>
                     </td>
                     {% if app.user == user %}
                     <td>
-                        <button class="button">
+                        <button class="button ml-1">
                             <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                         </button>
                     </td>

@@ -5,15 +5,15 @@
 {% block body %}
     <div class="pb-36 px-12">
         <h1 class="text-5xl py-16">Tous les tournois</h1>
-        <div class="lg:grid grid-cols-3">
+        <div class="card lg:grid grid-cols-3">
             {% for tournament in tournaments %}
-                <div>
+                <div class=>
                     <p><img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
-                            class="object-scale-down h-48 w-96 rounded-lg "></p>
+                            class="object-cover h-96 w-96 rounded-lg mb-12"></p>
                 </div>
-                <div class="text-md font-normal">
+                <div class="text-md font-normal ml-2">
                     <p>{{ tournament.name }}</p>
-                    <p>{{ tournament.dateStart ? tournament.dateStart|date('d-m-Y H:i') : '' }}</p>
+                    <p>{{ tournament.dateStart ? tournament.dateStart|date('d/m/Y H:i') : '' }}</p>
                     <p>{{ tournament.description }}</p>
                     <p>{{ tournament.type }}</p>
                     <p>Nombre de joueurs :
@@ -27,14 +27,14 @@
 
                 <div class="flex flex-col lg:justify-center lg:mt-12">
 
-                    <button class="button">
+                    <button class="button mr-48">
                         <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
 
-                    <button class="button">
+                    <button class="button mr-48">
                         <a href="{{ path('app_tournament_show', { 'id': tournament.id }) }}">Participer</a></button>
 
                     {% if is_granted('ROLE_ADMIN') %}
-                        <button class="button">
+                        <button class="button mr-48">
                             <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">Modifier</a></button>
                     {% endif %}
                 </div>
@@ -45,12 +45,13 @@
 
             {% endfor %}
 
-            {% if is_granted('ROLE_ADMIN') %}
-                <button class="button">
-                    <a href="{{ path('app_tournament_new') }}">Créer un tournoi</a>
-                </button>
-            {% endif %}
+
         </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <button class="button ml-60 mt-12">
+                <a href="{{ path('app_tournament_new') }}">Créer un tournoi</a>
+            </button>
+        {% endif %}
     </div>
 
 

@@ -15,13 +15,13 @@
                                                              class="hover:-translate-x-3"></a>
                     <div class="tournaments border-blue border-2 rounded-lg py-4 w-48 mx-4">
                         <i class="fa-solid fa-trophy text-blue"></i>
-                        <p><a href="{{ path('app_tournament_index') }}">XX Tournois</a></p>
+                        <p><a href="{{ path('app_tournament_index') }}">Tournois</a></p>
 
                 </div>
 
                     <div class="members border-blue border-2 rounded-lg py-4 w-48 mx-4">
                         <i class="fa-solid fa-user-group text-blue"></i>
-                        <p class="pl-4"><a href="{{ path('app_user_index') }}">XX Membres</a></p>
+                        <p class="pl-4"><a href="{{ path('app_user_index') }}">Membres</a></p>
                     </div>
                     <div class="ranking border-blue border-2 rounded-lg py-4 w-48 mx-4">
                         <i class="fa-solid fa-list-ol text-blue"></i>
@@ -45,9 +45,8 @@
     <div class="py-6">
         <h1 class="text-3xl bg-[#313485] py-2">Prochains tournois</h1>
     </div>
-    <div class="grid grid-cols-2">
     <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-6 py-4">
-        <div class="grid">
+<div class="grid gap-x-12">
             {% if tournamentsp is empty %}
                 <p>Aucun tournoi n'a été trouvé.</p>
             {% else %}
@@ -59,7 +58,7 @@
             {% endif %}
         </div>
     </div>
-    </div>
+
     <div class="py-6">
         <h1 class="text-3xl bg-[#313485] py-2">Tournois Passés</h1>
     </div>
@@ -76,9 +75,9 @@
             {% endif %}
         </div>
     </div>
-    <div class="py-6">
+    {# <div class="py-6">
         <h1 class="text-3xl bg-[#313485] py-2">Derniers joueurs inscrits</h1>
-    </div>
+    </div> #}
     <div class="h-24">
     </div>
 {% endblock %}
