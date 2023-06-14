@@ -34,7 +34,7 @@
 
     {% if is_granted('ROLE_ADMIN') %}
     <div class="mt-12">
-        <div class="bg-contain bg-no-repeat h-48" style="background-image: url('{{ asset('uploads/calendar.png') }}');">
+        <div class="bg-contain bg-no-repeat h-48 pl-4" style="background-image: url('{{ asset('uploads/calendar.png') }}');">
             <p class="text-right text-3xl font-bold pt-16 pr-44 hover:text-yellow"><a
                         href="{{ path('app_tournament_new') }}">Organiser un nouveau tournoi <i
                             class="fa-sharp fa-solid fa-chevron-right"></i></a></p>

@@ -7,6 +7,11 @@ import './bootstrap';
 import './styles/tailwind.css';
 import 'tw-elements';
 
+import {
+    Sidenav,
+    initTE,
+} from "tw-elements";
+
 
 
 var speed = 10;

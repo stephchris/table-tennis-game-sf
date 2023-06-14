@@ -82,10 +82,11 @@ class TournamentController extends AbstractController
     {
         $form = $this->createForm(TournamentType::class, $tournament);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $tournamentRepository->save($tournament, true);
 
-            return $this->redirectToRoute('app_tournament_show', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_tournament_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('tournament/edit.html.twig', [

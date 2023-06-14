@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    {# <script src="https://cdn.tailwindcss.com"
+            type="text/javascript"
+            src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js"></script>  #}
     <link rel="icon"
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
-
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -20,10 +22,11 @@
 
 </head>
 <body>
+{#  <header> #}
 <nav class=" text-xl h-48  px-12 grid grid-cols-2 h-52">
 
     <a href="{{ path('homepage') }}">
-        <img src="{{ asset('uploads/logoTTG.png') }}" alt="logo du site" class="pl-4 hover:translate-x-4>">
+        <img src="{{ asset('uploads/logoTTG.png') }}" alt="logo du site" class="pl-4 hover:translate-x-4">
     </a>
 
 
@@ -80,6 +83,38 @@
 
     </nav>
 
+    {#  <nav class="lg:w-64 bg-white">
+        <div class="cursor-pointer pl-8 lg:mt-8">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="h-5 w-5 text-3xl text-blue lg:hidden"
+                    onclick="onToggleMenu(this)"
+                    name="menu"
+                    role="img"
+                    aria-label="menu">
+                <path
+                        fill-rule="evenodd"
+                        d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+                        clip-rule="evenodd"
+            /></svg>
+        </div>
+        <div class="space-x-8 lg:flex">
+            {#  <div class="flex justify-between"> #}
+            {#  <div class="nav-link duration-500 lg:static absolute lg:min-h-fit min-h-[60vh] left-0 top-[-100%] lg:w-auto w-full flex items-center text-3xl font-bold  ">
+                <ul class="pt-8 pl-4 block">
+                    <li><a href="{{ path('app_tournament_index') }}"><i class="fa-solid fa-trophy text-blue"></i>Tournois</a>
+                    </li>
+                    <li><a href="{{ path('app_user_index') }}"><i
+                                    class="fa-solid fa-user-group text-blue"></i>Membres</a></li>
+                    <li><a><i class="fa-solid fa-list-ol text-blue"></i>Classement</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </nav> #}
+
 
     <main>
 
@@ -97,11 +132,22 @@
 
     </main>
 </div>
+{#  </header>
+
+<script>
+    function onToggleMenu(e) {
+        const navLinks = document.querySelector('.nav-link');
+        navLinks.classList.toggle('top-[9%]');
+    }
+</script> #}
+
 
 <footer class="mt-24">
     <a href="https://instagram.com/cjf_saint_malo_tt?igshid=YmMyMTA2M2Y=" target="_blank"><i class=" insta fa-brands fa-instagram pl-12 pt-4"></i></a>
     <p class="text-right text-yellow pr-12">Table Tennis Game © 2023</p>
 </footer>
+
+
 
 </body>
 </html>
