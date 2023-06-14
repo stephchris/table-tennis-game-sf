@@ -9,10 +9,10 @@
             {% for tournament in tournaments %}
                 <div class=>
                     <p><img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
-                            class="object-cover h-96 w-96 rounded-lg mb-12"></p>
+                            class="object-cover h-96 w-96 rounded-lg mt-16 mb-12 ml-64 lg:ml-0"></p>
                 </div>
-                <div class="text-md font-normal ml-2">
-                    <p>{{ tournament.name }}</p>
+                <div class="text-lg font-normal ml-12 lg:ml-2 lg:mt-20">
+                    <p class="font-bold">{{ tournament.name }}</p>
                     <p>{{ tournament.dateStart ? tournament.dateStart|date('d/m/Y H:i') : '' }}</p>
                     <p>{{ tournament.description }}</p>
                     <p>{{ tournament.type }}</p>
@@ -25,7 +25,7 @@
                 </div>
 
 
-                <div class="flex flex-col lg:justify-center lg:mt-12">
+                <div class="flex flex-col lg:justify-center mt-8 lg:mt-12 ml-48 lg:ml-4">
 
                     <button class="button mr-48">
                         <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
@@ -48,7 +48,7 @@
 
         </div>
         {% if is_granted('ROLE_ADMIN') %}
-            <button class="button ml-60 mt-12">
+            <button class="button ml-24 lg:ml-60 mt-12">
                 <a href="{{ path('app_tournament_new') }}">Créer un tournoi</a>
             </button>
         {% endif %}

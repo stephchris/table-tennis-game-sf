@@ -6,33 +6,38 @@
 
     <h1 class="text-5xl py-24 px-12">{{ user.fullName }}</h1>
 
-    <div class="card ">
+    <div class="card mx-12">
 
 
         <div class="flex">
-            <img src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}" class="h-96 flex-1 object-contain">
+            <div>
+            <img src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}" class="h-96 flex-1 object-contain mt-6 ml-8">
         </div>
         <div class="grid grid-cols-2">
-            <div>
-                <p class="my-2">{{ user.fullName }}</p>
+            <div class="ml-4 mt-8">
+                <p class="my-2 font-bold">{{ user.fullName }}</p>
                 <p class="mb-2">{{ user.gender }}</p>
                 <p class="mb-2">{{ user.birthDate ? user.birthDate|date('d-m-Y') : '' }}</p>
                 <p class="mb-2">Classement : {{ user.ranking }}</p>
                 <p class="mb-2">{{ user.address }}</p>
                 <p class="mb-4">{{ user.zipcode }}  {{ user.city }}</p>
             </div>
-            <div class="flex flex-col mt-8">
+            <div class="flex flex-col mt-64 ml-16">
                 <button class="button">
                     <a href="{{ path('app_user_index') }}">Retour à la liste</a>
                 </button>
                 <button class="button">
                     <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                 </button>
+
+                {{ include('user/_delete_form.html.twig') }}
+
             </div>
-            {{ include('user/_delete_form.html.twig') }}
+        </div>
+
+
         </div>
     </div>
-
 {% endblock %}
 
 

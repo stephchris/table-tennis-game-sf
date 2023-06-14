@@ -4,76 +4,76 @@
 
 {% block body %}
 
-<div class="mt-8">
+    <div class="mt-8">
     <h1 class="text-5xl py-16 px-8">{{ tournament.name }}</h1>
 
     <div class="text-3xl lg:mx-0 ">
-        <div class="mx-24 lg:mx-0">
-            <div class="lg:grid grid-cols-2">
-                <div>
-                    <img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
-                         class="object-contain h-48 w-96 flex-1 pb-4">
+    <div class="mx-24 lg:mx-0">
+        <div class="lg:grid grid-cols-2">
+            <div>
+                <img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
+                     class="object-contain h-48 w-96 flex-1 pb-4">
 
-                    <div class="font-normal">
-                        <p>{{ tournament.description }}</p>
-                        <p>
-                            {{ tournament.dateStart|date('d/m/Y H:i') }}</p>
+                <div class="font-normal">
+                    <p>{{ tournament.description }}</p>
+                    <p>
+                        {{ tournament.dateStart|date('d/m/Y H:i') }}</p>
 
-                        <p>{{ tournament.type }}</p>
-                        <p>Nombre de joueurs : {{ tournament.playerNumber }}</p>
-                        <p>Nombre de tables : {{ tournament.tableNumber }}</p>
-                        <p>Liste des Participants :
-                        <ul class="pl-48">
-                            {% for player in tournament.players %}
-                                <li class="pb-1">
-                                    {{ player.fullName }}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        </p>
-
-                    </div>
-
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <button class="button mr-4 mt-4">
-                            <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">Modifier</a>
-                        </button>
-
-                        {{ include('tournament/_delete_form.html.twig') }}
-
-                    {% endif %}
+                    <p>{{ tournament.type }}</p>
+                    <p>Nombre de joueurs : {{ tournament.playerNumber }}</p>
+                    <p>Nombre de tables : {{ tournament.tableNumber }}</p>
+                    <p>Liste des Participants :
+                    <ul class="pl-48">
+                        {% for player in tournament.players %}
+                            <li class="pb-1">
+                                {{ player.fullName }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    </p>
 
                 </div>
-                <div class="mt-4 lg:mt-16 lg:ml-4">
-                    {% if tournament.hasPlayer(app.user) %}
-                        <div>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <button class="button mr-4 mt-4">
+                        <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">Modifier</a>
+                    </button>
+
+                    {{ include('tournament/_delete_form.html.twig') }}
+
+                {% endif %}
+
+            </div>
+            <div class="mt-4 lg:mt-16 lg:ml-4">
+                {% if tournament.hasPlayer(app.user) %}
+                    <div>
                         <button class="button">
                             <a href="{{ path('app_tournament_participate', {'id': tournament.id}) }}">
                                 Se désinscrire
                             </a>
                         </button>
-                        </div>
-                        <div>
-                    {% elseif (tournament.availablePlayerNumber > 0) %}
-                        <button class="button">
-                            <a href="{{ path('app_tournament_participate', {'id': tournament.id}) }}">
-                                S'inscrire
-                            </a>
-                        </button>
-                        </div>
-                    {% endif %}
-                    <div>
-                        <button class="button">
-                            <a class="mt-2" href="{{ path('app_tournament_index') }}">Retour à la liste</a>
-                        </button>
                     </div>
-
-
+                    <div>
+                {% elseif (tournament.availablePlayerNumber > 0) %}
+                    <button class="button">
+                        <a href="{{ path('app_tournament_participate', {'id': tournament.id}) }}">
+                            S'inscrire
+                        </a>
+                    </button>
+                    </div>
+                {% endif %}
+                <div>
+                    <button class="button">
+                        <a class="mt-2" href="{{ path('app_tournament_index') }}">Retour à la liste</a>
+                    </button>
                 </div>
 
 
             </div>
+
+
         </div>
+    </div>
 
 
-        {% endblock %}
+{% endblock %}

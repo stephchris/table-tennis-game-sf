@@ -4,21 +4,21 @@
 
 {% block body %}
 
-    <div class="pb-36 px-12">
-        <h1 class="text-5xl py-16">Liste des membres</h1>
+<div class="pb-36 px-12">
+    <h1 class="text-5xl py-16">Liste des membres</h1>
 
-        <div class="flex ml-8">
-            <div class="mb-3 xl:w-96">
-                <div class="relative mb-4 flex">
-                    <input
-                            type="search"
-                            class="relative m-0 block w-[1%] min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
-                            placeholder="Rechercher"
-                            aria-label="Search"
-                            aria-describedby="button-addon2"/>
-                    <span
-                            class="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200"
-                            id="basic-addon2">
+    {# <div class="flex ml-8">
+        <div class="mb-3 xl:w-96">
+            <div class="relative mb-4 flex">
+                <input
+                        type="search"
+                        class="relative m-0 block w-[1%] min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                        placeholder="Rechercher"
+                        aria-label="Search"
+                        aria-describedby="button-addon2"/>
+                <span
+                        class="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200"
+                        id="basic-addon2">
         <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -30,46 +30,48 @@
                   clip-rule="evenodd"/>
         </svg>
       </span>
-                </div>
             </div>
-            {% if is_granted('ROLE_ADMIN') %}
-                <button class="button ml-96 mb-12">
-                    <a href="{{ path('app_user_new') }}">Créer un membre</a>
+        </div>  #}
+
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <button class="button ml-96">
+                <a href="{{ path('app_user_new') }}">Créer un membre</a>
+            </button>
+        {% endif %}
+    </div>
+
+    <table class="border-collapse border border-slate-900">
+        {% for user in users %}
+
+        <tbody class="">
+        <tr>
+            <td class="border border-slate-300 pl-2">{{ user.firstName }}</td>
+            <td class="border border-slate-300 pl-2">{{ user.lastName }}</td>
+            <td class="border border-slate-300 pl-2">{{ user.gender }}</td>
+            <td class="border border-slate-300 w-24 pl-2">{{ user.birthDate ? user.birthDate|date('d-m-Y') : '' }}</td>
+            <td class="border border-slate-300 pl-2">{{ user.ranking }}</td>
+            <td class="border border-slate-300 w-48 pl-2">{{ user.address }}</td>
+            <td class="border border-slate-300 pl-2">{{ user.zipcode }}</td>
+            <td class="border border-slate-300 pl-2">{{ user.city }}</td>
+
+            <td class="border border-slate-300">
+                <img src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}"
+                     class="max-h-fit w-32 rounded-lg>">
+            </td>
+
+            <td class="border border-slate-300">
+                <button class="button mx-2">
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a>
                 </button>
+            </td>
+            {% if app.user == user %}
+                <td class="border border-slate-300">
+                    <button class="button mx-1">
+                        <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                    </button>
+                </td>
             {% endif %}
-        </div>
-
-        <table class="border-collapse border border-slate-900 ml-8">
-            {% for user in users %}
-
-            <tbody>
-                <tr>
-                    <td class="border border-slate-300">{{ user.firstName }}</td>
-                    <td class="border border-slate-300">{{ user.lastName }}</td>
-                    <td class="border border-slate-300">{{ user.gender }}</td>
-                    <td class="border border-slate-300 w-24">{{ user.birthDate ? user.birthDate|date('d-m-Y') : '' }}</td>
-                    <td class="border border-slate-300">{{ user.ranking }}</td>
-                    <td class="border border-slate-300 w-48">{{ user.address }}</td>
-                    <td class="border border-slate-300">{{ user.zipcode }}</td>
-                    <td class="border border-slate-300">{{ user.city }}</td>
-
-                    <td class="border border-slate-300">
-                            <img src="{{ asset('uploads/' ~ user.image) }}" alt="{{ user.image }}"
-                                 class="max-h-fit w-32 rounded-lg>">
-                        </td>
-
-                    <td>
-                        <button class="button ml-2">
-                        <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a>
-                        </button>
-                    </td>
-                    {% if app.user == user %}
-                    <td>
-                        <button class="button ml-1">
-                            <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-                        </button>
-                    </td>
-                    {% endif %}
 
 
             {% else %}
@@ -77,13 +79,10 @@
                 <p colspan="10">Pas de membres inscrits</p>
 
             {% endfor %}
-                </tr>
-            </tbody>
-        </table>
+        </tr>
+        </tbody>
+    </table>
 
 
-
-
-
-        {% endblock %}
+    {% endblock %}
 

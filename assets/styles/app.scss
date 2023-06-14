@@ -52,7 +52,7 @@ p, label, input{
 }
 
 .button, .button_label  {
-  @apply rounded-lg px-8 py-2 mb-4 border-2 border-blue text-blue hover:bg-blue hover:text-yellow;
+  @apply rounded-lg px-8 py-2 mb-4 border-2 border-blue text-blue hover:bg-blue hover:text-yellow font-normal;
 }
 
 h1 {
