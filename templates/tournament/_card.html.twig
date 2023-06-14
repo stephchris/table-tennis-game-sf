@@ -2,15 +2,15 @@
     <div class="flex">
         <div class="mr-8">
             <img src="{{ asset('uploads/' ~ tournament.image) }}" alt={{ "tournament.name" }};"
-                 class="mb-8 w-28 h-28 rounded-lg">
+                 class="my-8 ml-16 lg:ml-8 w-28 h-28 rounded-lg">
         </div>
         <div>
-            <h3 class="text-xl">{{ tournament.name }}</h3>
+            <h3 class="text-xl mt-12">{{ tournament.name }}</h3>
             <time datetime="{{ tournament.dateStart|date('d-m-Y H:i') }}">
                 {{ tournament.dateStart|date('d-m-Y H:i') }}
             </time>
             <div class="mt-4">
-                <button class="button ml-36">
+                <button class="button ml-96 lg:ml-36">
                     <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails et inscription <i
                                 class="fa-sharp fa-solid fa-chevron-right"></i></a>
                 </button>

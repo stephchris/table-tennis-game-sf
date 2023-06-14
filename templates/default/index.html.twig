@@ -12,7 +12,7 @@
 
 
                     <a href="https://www.cjf-upsm.com/" target="_blank"><img src= {{ asset('uploads/logo.jpg') }} ;" alt="logo du club"
-                                                             class="hover:-translate-x-3"></a>
+                                                             class="hover:-translate-x-3 ml-12"></a>
                     <div class="tournaments border-blue border-2 rounded-lg py-4 w-48 mx-4">
                         <i class="fa-solid fa-trophy text-blue"></i>
                         <p><a href="{{ path('app_tournament_index') }}">Tournois</a></p>
@@ -45,25 +45,21 @@
     <div class="py-6">
         <h1 class="text-3xl bg-[#313485] py-2">Prochains tournois</h1>
     </div>
-    <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-6 py-4">
-<div class="grid gap-x-12">
+<div>
             {% if tournamentsp is empty %}
                 <p>Aucun tournoi n'a été trouvé.</p>
             {% else %}
-                <ul>
+                <ul class="grid lg:grid-cols-2 gap-4">
                     {% for tournament in tournamentsf %}
                         {% include 'tournament/_card.html.twig' with {'tournament': tournament} only %}
                     {% endfor %}
                 </ul>
             {% endif %}
-        </div>
     </div>
-
     <div class="py-6">
         <h1 class="text-3xl bg-[#313485] py-2">Tournois Passés</h1>
     </div>
-    <div class="max-w-xl rounded overflow-hidden shadow-lg py-8 ml-8 bg-white px-6 py-4">
-        <div class="grid">
+
             {% if tournamentsp is empty %}
                 <p>Aucun tournoi passé n'a été trouvé.</p>
             {% else %}
@@ -73,11 +69,10 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-        </div>
-    </div>
     {# <div class="py-6">
         <h1 class="text-3xl bg-[#313485] py-2">Derniers joueurs inscrits</h1>
     </div> #}
+
     <div class="h-24">
     </div>
 {% endblock %}
