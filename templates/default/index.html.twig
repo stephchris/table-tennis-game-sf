@@ -63,7 +63,7 @@
             {% if tournamentsp is empty %}
                 <p>Aucun tournoi passé n'a été trouvé.</p>
             {% else %}
-                <ul>
+                <ul class="grid lg:grid-cols-2 gap-4">
                     {% for tournament in tournamentsp %}
                         {% include 'tournament/_card2.html.twig' with {'tournament': tournament} only %}
                     {% endfor %}

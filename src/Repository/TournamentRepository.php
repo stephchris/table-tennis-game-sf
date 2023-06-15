@@ -52,7 +52,7 @@ class TournamentRepository extends ServiceEntityRepository
 
     public function findFuture(int $limit = 4): array
     {
-        // SELECT*FROM gig WHERE date_start > NOW() ORDER BY date_start ASC LIMIT 4
+        // SELECT*FROM tournament WHERE date_start > NOW() ORDER BY date_start ASC LIMIT 4
         return $this->createQueryBuilder('tournament')
             ->where('tournament.dateStart > :today')
             ->orderBy('tournament.dateStart', 'ASC')
@@ -62,7 +62,11 @@ class TournamentRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findPast(int $limit = 1): array
+    /**
+     * @param int $limit
+     * @return array
+     */
+    public function findPast(int $limit = 4): array
     {
         return $this->createQueryBuilder('tournament')
             ->where('tournament.dateStart < :today')

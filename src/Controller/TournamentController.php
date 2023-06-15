@@ -60,6 +60,14 @@ class TournamentController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_tournament_showpast', methods: ['GET'])]
+    public function showpast(Tournament $tournament): Response
+    {
+        return $this->render('tournament/showpast', [
+            'tournament' => $tournament,
+        ]);
+    }
+
     #[Route('/{id}/participate', name: 'app_tournament_participate', methods: ['GET'])]
     public function participate(Tournament $tournament, TournamentRepository $tournamentRepository): Response
     {

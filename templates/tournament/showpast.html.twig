@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tournament{% endblock %}
+
+{% block body %}
+
+<div class="mt-8">
+    <h1 class="text-5xl py-16 px-8">{{ tournament.name }}</h1>
+
+    <div class="text-3xl lg:mx-0 ">
+        <div class="mx-24 lg:mx-0">
+            <div class="lg:grid grid-cols-2">
+                <div>
+                    <img src="{{ asset('uploads/' ~ tournament.image) }}" alt="{{ tournament.image }}"
+                         class="object-contain h-48 w-96 flex-1 pb-4">
+
+                    <div class="font-normal">
+                        <p>{{ tournament.description }}</p>
+                        <p>
+                            {{ tournament.dateStart|date('d/m/Y H:i') }}</p>
+
+                        <p>{{ tournament.type }}</p>
+                        <p>Nombre de joueurs : {{ tournament.playerNumber }}</p>
+                        <p>Nombre de tables : {{ tournament.tableNumber }}</p>
+                        <p>Liste des Participants :
+                        <ul class="pl-48">
+                            {% for player in tournament.players %}
+                                <li class="pb-1">
+                                    {{ player.fullName }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        </p>
+
+                    </div>
+                </div>
+                <div>
+                    <button class="button">
+                        <a class="mt-2" href="{{ path('app_tournament_index') }}">Retour à la liste</a>
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

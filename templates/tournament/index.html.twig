@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="pb-36 px-12">
-        <h1 class="text-5xl py-16">Tous les tournois</h1>
+        <h1 class="text-5xl py-16">Les prochains tournois</h1>
         <div class="card lg:grid grid-cols-3">
             {% for tournament in tournaments %}
                 <div class=>
@@ -30,9 +30,10 @@
                     <button class="button mr-48">
                         <a href="{{ path('app_tournament_show', {'id': tournament.id}) }}">Détails</a></button>
 
+                    {% if (tournament.availablePlayerNumber > 0) %}
                     <button class="button mr-48">
                         <a href="{{ path('app_tournament_show', { 'id': tournament.id }) }}">Participer</a></button>
-
+                    {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <button class="button mr-48">
                             <a href="{{ path('app_tournament_edit', {'id': tournament.id}) }}">Modifier</a></button>
