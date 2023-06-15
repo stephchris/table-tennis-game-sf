@@ -82,6 +82,6 @@ li {
   @apply text-yellow hover:text-xl
 }
 
-.nav-link {
-  @apply max-h-min; /* Ajustez la valeur selon vos besoins */
+.uppercase {
+  text-transform: uppercase;
 }

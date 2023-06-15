@@ -41,7 +41,7 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => 'zone mt-1 mb-4'
                 ],
-                'required' => true,
+                'required' => false,
             ])
             ->add('gender', ChoiceType::class, [
                 'label' => 'Genre',
@@ -50,9 +50,9 @@ class UserType extends AbstractType
                 ],
                 'placeholder' => 'Sélectionner un genre',
                 'choices' => [
-                    'Femme' => 'femme',
-                    'Homme' => 'homme',
-                    'Mixte' => 'mixte',
+                    'Femme' => 'Femme',
+                    'Homme' => 'Homme',
+                    'Mixte' => 'Mixte',
                 ],
 
                 'attr' => [
@@ -95,7 +95,7 @@ class UserType extends AbstractType
                     'class' => 'block text font-bold'
                 ],
                 'attr' => [
-                    'class' => 'zone mt-1 mb-4'
+                    'class' => 'zone mt-1 mb-4 uppercase',
                 ],
             ])
             ->add('ranking', TextType::class, [

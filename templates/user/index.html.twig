@@ -65,14 +65,14 @@
                     <a href="{{ path('app_user_show', {'id': user.id}) }}">Détails</a>
                 </button>
             </td>
-            {% if app.user == user %}
+            {% if app.user == user or is_granted('ROLE_ADMIN') %}
+
                 <td class="border border-slate-300">
                     <button class="button mx-1">
                         <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                     </button>
                 </td>
             {% endif %}
-
 
             {% else %}
 
